@@ -3,9 +3,19 @@
 	justify-content: center;
 	align-items: center;
 	background-color: #000555;
+	min-height: 100vh;
 }
 .start-button{
+	padding: 1rem 3rem;
 	border: 3px solid #e4c02f;
+	border-radius: 0.6rem;
+	letter-spacing: 0.2rem;
 	font-style: italic;
 	font-size: 2.8rem;
+	background-color: #777999;
+	cursor:	pointer;
+	transition: background-color 0.5s ease;
+}
+.start-button:hover{
+	background-color: #16b1a4;
 }
