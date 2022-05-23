@@ -1,0 +1,11 @@
+.start-page-inner{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	background-color: #000555;
+}
+.start-button{
+	border: 3px solid #e4c02f;
+	font-style: italic;
+	font-size: 2.8rem;
+}
