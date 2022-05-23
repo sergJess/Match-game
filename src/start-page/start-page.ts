@@ -10,5 +10,6 @@ export default class StartPage extends NodeCreator {
     const startButton = new NodeCreator(startPageInner.getElement(), document.createElement('button'),{classList: ['start-button'],
      text: 'Start Game'
   });
+  
   }
 }
