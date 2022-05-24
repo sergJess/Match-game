@@ -1,0 +1,8 @@
+.settings-start-button{
+	display: block;
+	padding: 0.8rem 2rem;
+	font-size: 2.4rem;
+	color: rgb(26, 92, 190);
+	background-color: #6b35a9;
+	border: 3px dashed #69ba41;
+}
