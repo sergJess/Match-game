@@ -9,7 +9,9 @@ export default class Settings extends NodeCreator{
 		super(parent, element, nodeParams);
 }
 initiateByButton(parentNode: HTMLElement, callback: voidFunc): void{
-const buttonStart = new NodeCreator(parentNode, document.createElement('button'), {classList: ['settings-start-button']}).getElement();
+const buttonStart = new NodeCreator(parentNode, document.createElement('button'), {classList: ['settings-start-button'],
+text: 'Settings'
+}).getElement();
 buttonStart.onclick = (): void => {
 	callback();
 };
