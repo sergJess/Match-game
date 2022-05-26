@@ -15,6 +15,10 @@ export default class StartPage extends NodeCreator {
   const startSettings =  new NodeCreator(startPageInner.getElement(), document.createElement('button'),{classList: ['start-settings-button'],
   text: 'Settings'
 });
+startSettings.setOnclick(():void =>{
+  console.log('Jess')
+});
+
   const settings = new Settings(this.getElement(), document.createElement('div'),{classList: ['settings']});
 
   }

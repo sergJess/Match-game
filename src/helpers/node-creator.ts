@@ -49,4 +49,9 @@ removeElement(): void {
 removeElementContent(): void {
 	this.element.innerHTML = '';
 }
+setOnclick(handler: Function): void{
+	this.element.onclick = ()=>{
+		handler();
+	}
+}
 }
