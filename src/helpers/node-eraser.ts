@@ -1,4 +1,4 @@
-import {NodeCreator, nodeParametrs} from './node-creator';
+import {NodeCreator} from './node-creator';
 export default class Eraser{
 private nodeToRemove?: Array<NodeCreator>;
 private nodeToClear?: Array<NodeCreator>;

@@ -1,5 +1,6 @@
 import './start-page.css';
 import {NodeCreator, nodeParametrs} from '../helpers/node-creator';
+import NodeEraser from '../helpers/node-eraser';
 import Settings from '../settings/settings';
 
 export default class StartPage extends NodeCreator {
@@ -16,10 +17,11 @@ export default class StartPage extends NodeCreator {
   text: 'Settings'
 });
 startSettings.setOnclick(():void =>{
-  console.log('Jess')
+  new NodeEraser([this]).erase();
+  new Settings(this.getParent(), document.createElement('div'),{classList: ['settings']}).render();
 });
 
-  const settings = new Settings(this.getElement(), document.createElement('div'),{classList: ['settings']});
+  
 
   }
 }

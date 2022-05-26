@@ -5,3 +5,4 @@ import StartPage from './start-page/start-page';
 const root = new NodeCreator(document.body, document.createElement('div'),{id: 'root'}).getElement();
 
 new StartPage(root, document.createElement('div'),{}).render();
+export default root;

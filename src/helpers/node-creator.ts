@@ -39,7 +39,9 @@ addText(): void{
 		this.element.textContent = text;
 	}
 }
-
+getParent(): HTMLElement {
+return this.parent;
+}
 getElement(): HTMLElement {
 	return this.element;
 }
