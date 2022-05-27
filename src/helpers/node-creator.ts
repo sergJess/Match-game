@@ -1,8 +1,14 @@
+interface attributesParams{
+	name: string;
+	value: string;
+}
 export interface nodeParametrs {
 	classList?: Array<string>
 	id? :string;
 	text?: string;
+	attributes?: Array<attributesParams>
 }
+
 export class NodeCreator {
 	private element: HTMLElement;
 	private parent: HTMLElement;
@@ -14,6 +20,7 @@ export class NodeCreator {
 		this.addClassList();
 		this.addId();
 		this.addText();
+		this.addAttributes();
 		this.parent.append(this.element);
 	}
 
@@ -37,6 +44,13 @@ addText(): void{
 	const text = this.nodeParams.text;
 	if(text){
 		this.element.textContent = text;
+	}
+}
+addAttributes():void {
+	if(this.nodeParams.attributes?.length){
+		this.nodeParams.attributes.map((item: attributesParams) => {
+			this.element.setAttribute(item.name, item.value);
+		});
 	}
 }
 getParent(): HTMLElement {
