@@ -1,0 +1,14 @@
+.settings-page{
+	background-color: #197fc7;
+	min-height: 100vh;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	flex-direction: column;
+	row-gap: 2rem;
+	padding: 2rem 3rem;
+}
+.settings-title{
+	font-size: 5.4rem;
+	color: #fff;
+}
