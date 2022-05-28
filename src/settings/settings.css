@@ -12,3 +12,12 @@
 	font-size: 5.4rem;
 	color: #fff;
 }
+.settings-point-inner{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.difficult-label{
+font-size: 3rem;
+color: #fff;
+}
