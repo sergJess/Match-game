@@ -18,7 +18,7 @@ export default class StartPage extends NodeCreator {
 });
 startSettings.setOnclick(():void =>{
   new NodeEraser([this]).erase();
-  new Settings(this.getParent(), document.createElement('div'),{classList: ['settings-page']}).render();
+  new Settings(this.getParent(), document.createElement('div'),{classList: ['settings-page']}, {difficulty: 'medium'}).render();
 });
 
   

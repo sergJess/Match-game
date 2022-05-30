@@ -2,11 +2,28 @@ import './settings.css';
 import {NodeCreator, nodeParametrs} from '../helpers/node-creator';
 type voidFunc = ()=> void;
 interface settingsParams {
-
+difficulty: string; // easy - medium - hard
 }
 export default class Settings extends NodeCreator{
-	constructor(parent: HTMLElement, element: HTMLElement, nodeParams: nodeParametrs){
+	private initiateSettings: settingsParams;
+	constructor(parent: HTMLElement, element: HTMLElement, nodeParams: nodeParametrs, initiateSettings:settingsParams){
 		super(parent, element, nodeParams);
+			this.initiateSettings = initiateSettings;
+	
+
+}
+
+setSetting(parent:	HTMLElement, childrenName:	string):void {
+const child = parent.querySelector(childrenName);
+if(child) {
+	const isInputRadio = child.getAttribute('type');
+	 if(isInputRadio === 'radio') {
+			child.setAttribute('checked', 'true');
+			return;
+		}
+	throw new Error('Invalid child');
+}
+
 }
 
 render(): void{
@@ -14,10 +31,11 @@ render(): void{
 text: 'Settings'
 });
 const settingsInner = new NodeCreator(this.getElement(), document.createElement('div'), {classList:['settings-inner']});
-const firstPoint = new NodeCreator(settingsInner.getElement(), document.createElement('div'), {classList:['settings-point-inner']});
 const difficultTitle = new NodeCreator(settingsInner.getElement(), document.createElement('h2'), {
 	classList:['settings-point-title'], text: 'Choose difficulty'
 });
+const firstPoint = new NodeCreator(settingsInner.getElement(), document.createElement('div'), {classList:['settings-point-inner']});
+
 const radioDifficultFirst = new NodeCreator(firstPoint.getElement(), document.createElement('input'), {
 	id: 'first-difficult',
 	classList:['settings-point-inner'], 
@@ -40,7 +58,7 @@ const radioDifficultSecond = new NodeCreator(firstPoint.getElement(), document.c
 	attributes: [
 		{name: 'name', value: 'settings-difficult'},
 		{name:'type', value: 'radio'},
-		{name: 'difficult-settings', value: 'easy'}]
+		{name: 'difficult-settings', value: 'medium'}]
 });
 const difficultLabelMedium = new NodeCreator(firstPoint.getElement(), document.createElement('label'), {
 	classList:['difficult-label'],
