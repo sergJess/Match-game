@@ -1,0 +1,13 @@
+.difficulty-title{
+	color: #27d235;
+	font-size: 4rem;
+	font-style: italic;
+	letter-spacing: 0.1em;
+	text-align: center;
+	padding: 1rem 0;
+}
+.difficult-label{
+	margin-right: 1.4rem;
+	font-size: 3rem;
+	color: #fff;
+	}

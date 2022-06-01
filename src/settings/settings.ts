@@ -1,5 +1,6 @@
 import './settings.css';
 import {NodeCreator, nodeParametrs} from '../helpers/node-creator';
+import Difficulty from './difficulty/difficulty';
 type voidFunc = ()=> void;
 interface settingsParams {
 difficulty: string; // easy - medium - hard
@@ -34,59 +35,10 @@ render(): void{
 text: 'Settings'
 });
 const settingsInner = new NodeCreator(this.getElement(), document.createElement('div'), {classList:['settings-inner']});
-const difficultTitle = new NodeCreator(settingsInner.getElement(), document.createElement('h2'), {
-	classList:['settings-point-title'], text: 'Choose difficulty'
-});
-const firstPoint = new NodeCreator(settingsInner.getElement(), document.createElement('div'), {classList:['settings-point-inner']});
+const difficulty = new Difficulty(settingsInner.getElement(), document.createElement('div'), {});
+difficulty.render();
 
-const radioDifficultFirst = new NodeCreator(firstPoint.getElement(), document.createElement('input'), {
-	id: 'first-difficult',
-	classList:['settings-point'], 
-	attributes: [
-		{name: 'name', value: 'settings-difficult'},
-		{name:'type', value: 'radio'},
-		{name: 'difficult-settings', value: 'easy'}]
-});
-const difficultLabelEasy = new NodeCreator(firstPoint.getElement(), document.createElement('label'), {
-	classList:['difficult-label'],
-	text: 'Easy', 
-	attributes: [
-		{name:'for', value: 'first-difficult'}
-		]
-});
-
-const radioDifficultSecond = new NodeCreator(firstPoint.getElement(), document.createElement('input'), {
-	id: 'second-difficult',
-	classList:['settings-point'], 
-	attributes: [
-		{name: 'name', value: 'settings-difficult'},
-		{name:'type', value: 'radio'},
-		{name: 'difficult-settings', value: 'medium'}]
-});
-const difficultLabelMedium = new NodeCreator(firstPoint.getElement(), document.createElement('label'), {
-	classList:['difficult-label'],
-	text: 'Medium', 
-	attributes: [
-		{name:'for', value: 'second-difficult'}
-		]
-});
-
-const radioDifficultThird = new NodeCreator(firstPoint.getElement(), document.createElement('input'), {
-	id: 'third-difficult',
-	classList:['settings-point'], 
-	attributes: [
-		{name: 'name', value: 'settings-difficult'},
-		{name:'type', value: 'radio'},
-		{name: 'difficult-settings', value: 'hard'}]
-});
-const difficultLabelHard = new NodeCreator(firstPoint.getElement(), document.createElement('label'), {
-	classList:['difficult-label'],
-	text: 'Hard', 
-	attributes: [
-		{name:'for', value: 'third-difficult'}
-		]
-});
-this.setDifficulty(firstPoint.getElement(), '[difficult-settings]', {
+this.setDifficulty(difficulty.getElement(), '[difficult-settings]', {
 	nameAttribute: 'difficult-settings',
 	valueAttribute: 'medium'
 

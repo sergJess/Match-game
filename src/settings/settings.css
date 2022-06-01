@@ -12,21 +12,8 @@
 	font-size: 5.4rem;
 	color: #fff;
 }
-.settings-point-title{
-	color: #27d235;
-	font-size: 4rem;
-	font-style: italic;
-	letter-spacing: 0.1em;
-	text-align: center;
-	padding: 1rem 0;
-}
 .settings-point-inner{
 	display: flex;
 	justify-content: center;
 	align-items: center;
-}
-.difficult-label{
-margin-right: 1.4rem;
-font-size: 3rem;
-color: #fff;
 }
