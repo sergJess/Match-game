@@ -4,6 +4,10 @@ type voidFunc = ()=> void;
 interface settingsParams {
 difficulty: string; // easy - medium - hard
 }
+interface settingsDifficulty {
+	nameAttribute: string;
+	valueAttribute: string;
+}
 export default class Settings extends NodeCreator{
 	private initiateSettings: settingsParams;
 	constructor(parent: HTMLElement, element: HTMLElement, nodeParams: nodeParametrs, initiateSettings:settingsParams){
@@ -13,16 +17,15 @@ export default class Settings extends NodeCreator{
 
 }
 
-setSetting(parent:	HTMLElement, childrenName:	string):void {
-const child = parent.querySelector(childrenName);
-if(child) {
-	const isInputRadio = child.getAttribute('type');
-	 if(isInputRadio === 'radio') {
-			child.setAttribute('checked', 'true');
-			return;
-		}
-	throw new Error('Invalid child');
-}
+setDifficulty(parent:	HTMLElement, childSelector:	string, attributes: settingsDifficulty):void {
+const child = parent.querySelectorAll(childSelector);
+child.forEach((item: Element)=>{
+	const value = item.getAttribute('type');
+	const isRadio = value === 'radio';
+ if(item.getAttribute(attributes.nameAttribute) ===	attributes.valueAttribute && isRadio) {
+item.setAttribute('checked', 'true');
+	}
+});
 
 }
 
@@ -38,7 +41,7 @@ const firstPoint = new NodeCreator(settingsInner.getElement(), document.createEl
 
 const radioDifficultFirst = new NodeCreator(firstPoint.getElement(), document.createElement('input'), {
 	id: 'first-difficult',
-	classList:['settings-point-inner'], 
+	classList:['settings-point'], 
 	attributes: [
 		{name: 'name', value: 'settings-difficult'},
 		{name:'type', value: 'radio'},
@@ -54,7 +57,7 @@ const difficultLabelEasy = new NodeCreator(firstPoint.getElement(), document.cre
 
 const radioDifficultSecond = new NodeCreator(firstPoint.getElement(), document.createElement('input'), {
 	id: 'second-difficult',
-	classList:['settings-point-inner'], 
+	classList:['settings-point'], 
 	attributes: [
 		{name: 'name', value: 'settings-difficult'},
 		{name:'type', value: 'radio'},
@@ -70,7 +73,7 @@ const difficultLabelMedium = new NodeCreator(firstPoint.getElement(), document.c
 
 const radioDifficultThird = new NodeCreator(firstPoint.getElement(), document.createElement('input'), {
 	id: 'third-difficult',
-	classList:['settings-point-inner'], 
+	classList:['settings-point'], 
 	attributes: [
 		{name: 'name', value: 'settings-difficult'},
 		{name:'type', value: 'radio'},
@@ -83,7 +86,11 @@ const difficultLabelHard = new NodeCreator(firstPoint.getElement(), document.cre
 		{name:'for', value: 'third-difficult'}
 		]
 });
+this.setDifficulty(firstPoint.getElement(), '[difficult-settings]', {
+	nameAttribute: 'difficult-settings',
+	valueAttribute: 'medium'
 
+});
 const secondPoint = new NodeCreator(settingsInner.getElement(), document.createElement('div'), {classList:['settings-point-inner'], text: 'Set volume range'});
 const thirdPoint = new NodeCreator(settingsInner.getElement(), document.createElement('div'), {classList:['settings-point-inner'], text: 'Choose song'});
 
