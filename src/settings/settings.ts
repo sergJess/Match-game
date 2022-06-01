@@ -1,6 +1,9 @@
 import './settings.css';
 import {NodeCreator, nodeParametrs} from '../helpers/node-creator';
+import NodeEraser from '../helpers/node-eraser';
 import Difficulty from './difficulty/difficulty';
+import StartPage from '../start-page/start-page';
+import content from '../index';
 type voidFunc = ()=> void;
 interface settingsParams {
 difficulty: string; // easy - medium - hard
@@ -15,7 +18,6 @@ export default class Settings extends NodeCreator{
 		super(parent, element, nodeParams);
 			this.initiateSettings = initiateSettings;
 	
-
 }
 
 setDifficulty(parent:	HTMLElement, childSelector:	string, attributes: settingsDifficulty):void {
@@ -45,6 +47,15 @@ this.setDifficulty(difficulty.getElement(), '[difficult-settings]', {
 });
 const secondPoint = new NodeCreator(settingsInner.getElement(), document.createElement('div'), {classList:['settings-point-inner'], text: 'Set volume range'});
 const thirdPoint = new NodeCreator(settingsInner.getElement(), document.createElement('div'), {classList:['settings-point-inner'], text: 'Choose song'});
+
+const buttonBack = new NodeCreator(settingsInner.getElement(), document.createElement('div'), {
+	classList:['settings-button-back'],
+	text: 'Back'
+});
+buttonBack.setOnclick(():void => {
+new NodeEraser([this]).erase();
+new StartPage(content, document.createElement('div'), {classList: ['start-page']}).render();
+});
 
 }
 
