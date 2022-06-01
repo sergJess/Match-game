@@ -8,6 +8,7 @@
 	row-gap: 2rem;
 	padding: 2rem 3rem;
 }
+
 .settings-title{
 	font-size: 5.4rem;
 	color: #fff;
@@ -29,4 +30,7 @@
 	border: 0.2em solid #7c0097;
 	cursor: pointer;
 	transition: color 0.3s ease-in-out;
+}
+.settings-button-back:hover{
+	color: #902424;
 }
