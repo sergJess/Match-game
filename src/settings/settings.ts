@@ -3,7 +3,7 @@ import {NodeCreator, nodeParametrs} from '../helpers/node-creator';
 import NodeEraser from '../helpers/node-eraser';
 import Difficulty from './difficulty/difficulty';
 import StartPage from '../start-page/start-page';
-import content from '../index';
+import {content} from '../index';
 type voidFunc = ()=> void;
 interface settingsParams {
 difficulty: string; // easy - medium - hard

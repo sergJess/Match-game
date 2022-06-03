@@ -4,15 +4,19 @@ interface applicationSettings {
 difficulty: string;
 time:	number;
 }
-class SettingsApp extends NodeCreator{
-	constructor(parent: HTMLElement, element: HTMLElement, nodeParams: nodeParametrs){
-		super(parent, element, nodeParams);
-}
-setDifficulty(difficulty: string){
-	
+export default class SettingsApp{
+	private settings: applicationSettings;
+	constructor(settigns:applicationSettings){
+		this.settings = settigns;
 }
 
-create():applicationSettings{
-const settings = {};
+setDifficulty(difficulty: string): void{
+	this.settings.difficulty = difficulty;
+}
+setTime(time: number): void{
+	this.settings.time = time;
+}
+create( ): applicationSettings{
+return this.settings;
 }
 }
