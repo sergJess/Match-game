@@ -4,7 +4,7 @@ interface applicationSettings {
 difficulty: string;
 time:	number;
 }
-export default class SettingsApp{
+export class SettingsApp{
 	private settings: applicationSettings;
 	constructor(settigns:applicationSettings){
 		this.settings = settigns;
@@ -19,4 +19,9 @@ setTime(time: number): void{
 create( ): applicationSettings{
 return this.settings;
 }
+}
+
+export const settingsObject: applicationSettings = {
+	difficulty: 'medium',
+	time: 30
 }
