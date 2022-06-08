@@ -4,6 +4,7 @@ import NodeEraser from '../helpers/node-eraser';
 import Difficulty from './difficulty/difficulty';
 import StartPage from '../start-page/start-page';
 import {content} from '../index';
+import {appSettings} from './settings-app/settings-app';
 type voidFunc = ()=> void;
 interface settingsParams {
 difficulty: string; // easy - medium - hard
@@ -33,11 +34,14 @@ item.setAttribute('checked', 'true');
 }
 
 render(): void{
-	const title = new NodeCreator(this.getElement(), document.createElement('h2'), {classList: ['settings-title'],
-text: 'Settings'
-});
+	 new NodeCreator(this.getElement(), document.createElement('h2'), 
+		{
+			classList: ['settings-title'],
+   text: 'Settings'
+  }
+);
 const settingsInner = new NodeCreator(this.getElement(), document.createElement('div'), {classList:['settings-inner']});
-const difficulty = new Difficulty(settingsInner.getElement(), document.createElement('div'), {});
+const difficulty = new Difficulty(settingsInner.getElement(), document.createElement('div'), {}, appSettings);
 difficulty.render();
 
 this.setDifficulty(difficulty.getElement(), '[difficult-settings]', {

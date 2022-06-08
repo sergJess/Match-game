@@ -1,9 +1,9 @@
 
-interface applicationSettings {
+export interface applicationSettings {
 difficulty: string;
 time:	number;
 }
-class SettingsApp{
+export class SettingsApp{
 private difficulty: string;
 private time: number;
 
@@ -41,5 +41,5 @@ return this.settings;
 
 }
 
-export  const appSettings = new SettingsApp('medium', 30).create();
+export  const appSettings = new SettingsApp('medium', 30);
 
