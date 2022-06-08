@@ -8,12 +8,24 @@ export default class Difficulty extends NodeCreator{
 		super(parent, element, nodeParams);
 		this.settings = settings;
 	}
+
+	setChosenDifficultty(difficulty: HTMLElement): void {
+const radioChildren = difficulty.querySelectorAll('[difficult-settings]');
+radioChildren.forEach((item) => {
+	const type = item.getAttribute('type');
+	const settings = item.getAttribute('difficult-settings');
+	if(type === 'radio' && this.settings.getDifficulty() === settings) {
+		item.setAttribute('checked', 'true');
+	}
+});
+
+	}
+
 setDifficulty(difficulty: HTMLElement):void{
 	const value = difficulty.getAttribute('difficult-settings');
 	 if (value) {
 			this.settings.setDifficulty(value);
 		}
-	
 }
 
 render(): void{
@@ -84,6 +96,7 @@ render(): void{
 			{name:'for', value: 'third-difficult'}
 			]
 	});
+	this.setChosenDifficultty(this.getElement());
 }
 
 }

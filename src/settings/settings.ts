@@ -21,18 +21,6 @@ export default class Settings extends NodeCreator{
 	
 }
 
-setDifficulty(parent:	HTMLElement, childSelector:	string, attributes: settingsDifficulty):void {
-const child = parent.querySelectorAll(childSelector);
-child.forEach((item: Element)=>{
-	const value = item.getAttribute('type');
-	const isRadio = value === 'radio';
- if(item.getAttribute(attributes.nameAttribute) ===	attributes.valueAttribute && isRadio) {
-item.setAttribute('checked', 'true');
-	}
-});
-
-}
-
 render(): void{
 	 new NodeCreator(this.getElement(), document.createElement('h2'), 
 		{
@@ -44,11 +32,6 @@ const settingsInner = new NodeCreator(this.getElement(), document.createElement(
 const difficulty = new Difficulty(settingsInner.getElement(), document.createElement('div'), {}, appSettings);
 difficulty.render();
 
-this.setDifficulty(difficulty.getElement(), '[difficult-settings]', {
-	nameAttribute: 'difficult-settings',
-	valueAttribute: 'medium'
-
-});
 const secondPoint = new NodeCreator(settingsInner.getElement(), document.createElement('div'), {classList:['settings-point-inner'], text: 'Set volume range'});
 const thirdPoint = new NodeCreator(settingsInner.getElement(), document.createElement('div'), {classList:['settings-point-inner'], text: 'Choose song'});
 
