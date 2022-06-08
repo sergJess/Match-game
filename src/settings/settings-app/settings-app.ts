@@ -3,7 +3,7 @@ interface applicationSettings {
 difficulty: string;
 time:	number;
 }
-export class SettingsApp{
+class SettingsApp{
 private difficulty: string;
 private time: number;
 
@@ -22,11 +22,24 @@ private time: number;
 setDifficulty(difficulty: string): void{
 	this.settings.difficulty = difficulty;
 }
+
 setTime(time: number): void{
 	this.settings.time = time;
 }
+
+getDifficulty(): string {
+	return this.settings.difficulty;
+}
+
+getTime(): number {
+	return this.settings.time;
+}
+
 create( ): applicationSettings{
 return this.settings;
 }
+
 }
+
+export  const appSettings = new SettingsApp('medium', 30).create();
 
