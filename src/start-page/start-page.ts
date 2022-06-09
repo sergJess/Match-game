@@ -21,7 +21,9 @@ startSettings.setOnclick(():void =>{
   new Settings(this.getParent(), document.createElement('div'),{classList: ['settings-page']}, {difficulty: 'medium'}).render();
 });
 
-  
+startButton.setOnclick(():void =>{
+  new NodeEraser([this]).erase();
+});
 
   }
 }
