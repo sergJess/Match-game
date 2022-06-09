@@ -1,6 +1,7 @@
 import './start-page.css';
 import {NodeCreator, nodeParametrs} from '../helpers/node-creator';
 import NodeEraser from '../helpers/node-eraser';
+import Game from '../game/game';
 import Settings from '../settings/settings';
 
 export default class StartPage extends NodeCreator {
@@ -23,6 +24,7 @@ startSettings.setOnclick(():void =>{
 
 startButton.setOnclick(():void =>{
   new NodeEraser([this]).erase();
+  new Game(this.getParent(), document.createElement('div'),{}).render();
 });
 
   }
