@@ -11,17 +11,21 @@ export interface nodeParametrs {
 
 export class NodeCreator {
 	private element: HTMLElement;
-	private parent: HTMLElement;
+	private parent?: HTMLElement;
 	private nodeParams: nodeParametrs;
-	constructor(parent: HTMLElement, element: HTMLElement, nodeParams: nodeParametrs = {}){
+	constructor(element: HTMLElement, nodeParams: nodeParametrs = {}, parent?: HTMLElement){
 		this.element = element;
-		this.parent = parent;
+		if(parent){
+			this.parent = parent;
+			this.parent.append(this.element);
+		}
+
 		this.nodeParams = nodeParams;
 		this.addClassList();
 		this.addId();
 		this.addText();
 		this.addAttributes();
-		this.parent.append(this.element);
+		
 	}
 
 addClassList(): void{
@@ -53,8 +57,10 @@ addAttributes():void {
 		});
 	}
 }
-getParent(): HTMLElement {
-return this.parent;
+getParent(): HTMLElement | undefined {
+	if(this.parent){
+		return this.parent;
+	}
 }
 getElement(): HTMLElement {
 	return this.element;

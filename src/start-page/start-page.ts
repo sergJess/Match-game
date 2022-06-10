@@ -5,26 +5,27 @@ import Game from '../game/game';
 import Settings from '../settings/settings';
 
 export default class StartPage extends NodeCreator {
-  constructor(parent: HTMLElement, element: HTMLElement, nodeParams: nodeParametrs){
-    super(parent, element, nodeParams);
+  constructor( element: HTMLElement, nodeParams: nodeParametrs, parent?: HTMLElement){
+		super(element, nodeParams, parent);
   }
   
   render(): void {
-    const startPageInner = new NodeCreator(this.getElement(), document.createElement('div'),{classList: ['start-page-inner']});
-    const startButton = new NodeCreator(startPageInner.getElement(), document.createElement('button'),{classList: ['start-button'],
+    const startPageInner = new NodeCreator(document.createElement('div'),{classList: ['start-page-inner']}, this.getElement());
+    const startButton = new NodeCreator(document.createElement('button'),{classList: ['start-button'],
      text: 'Start Game'
-  });
-  const startSettings =  new NodeCreator(startPageInner.getElement(), document.createElement('button'),{classList: ['start-settings-button'],
+  },
+  startPageInner.getElement());
+  const startSettings =  new NodeCreator(document.createElement('button'),{classList: ['start-settings-button'],
   text: 'Settings'
-});
+}, startPageInner.getElement());
 startSettings.setOnclick(():void =>{
   new NodeEraser([this]).erase();
-  new Settings(this.getParent(), document.createElement('div'),{classList: ['settings-page']}, {difficulty: 'medium'}).render();
+  new Settings(document.createElement('div'),{classList: ['settings-page']}, {difficulty: 'medium'}, this.getParent()).render();
 });
 
 startButton.setOnclick(():void =>{
   new NodeEraser([this]).erase();
-  new Game(this.getParent(), document.createElement('div'),{}).render();
+  new Game(document.createElement('div'),{}, this.getParent()).render();
 });
 
   }

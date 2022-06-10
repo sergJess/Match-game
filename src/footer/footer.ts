@@ -2,25 +2,25 @@ import './footer.css';
 import {NodeCreator, nodeParametrs} from '../helpers/node-creator';
 
 export default class Footer extends NodeCreator{
-	constructor(parent: HTMLElement, element: HTMLElement, nodeParams: nodeParametrs){
-		super(parent, element, nodeParams);
-}
+	constructor( element: HTMLElement, nodeParams: nodeParametrs, parent?: HTMLElement){
+		super(element, nodeParams, parent);
+	}
 render():void {
-	const footerInner = new NodeCreator(this.getElement(), document.createElement('div'), {
+	const footerInner = new NodeCreator(document.createElement('div'), {
 		classList:['footer-inner']
-	}).getElement();
-const yearCreate = new NodeCreator(footerInner, document.createElement('p'), {
+	}, this.getElement()).getElement();
+const yearCreate = new NodeCreator(document.createElement('p'), {
 	classList: ['footer-year'],
 	text: '2022'
-});
+}, footerInner);
 
-const linkGithubInner = new NodeCreator(footerInner, document.createElement('div'), {
+const linkGithubInner = new NodeCreator(document.createElement('div'), {
 	classList:['footer-link-inner']
-}).getElement();
-const linkGithub = new NodeCreator(linkGithubInner, document.createElement('a'), {
+}, footerInner).getElement();
+const linkGithub = new NodeCreator(document.createElement('a'), {
 	classList:['footer-link'],
 	text: 'Github',
 	attributes: [{name: 'href', value: 'https://github.com'}]
-}).getElement();
+}, linkGithubInner).getElement();
 }
 }

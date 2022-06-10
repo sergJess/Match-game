@@ -4,8 +4,8 @@ import {applicationSettings, SettingsApp} from '../settings-app/settings-app';
 
 export default class Difficulty extends NodeCreator{
 	private settings: SettingsApp;
-	constructor(parent: HTMLElement, element: HTMLElement, nodeParams: nodeParametrs, settings: SettingsApp){
-		super(parent, element, nodeParams);
+	constructor(element: HTMLElement, nodeParams: nodeParametrs, settings: SettingsApp, parent?: HTMLElement){
+		super(element, nodeParams, parent);
 		this.settings = settings;
 	}
 
@@ -29,73 +29,73 @@ setDifficulty(difficulty: HTMLElement):void{
 }
 
 render(): void{
-	const difficultTitle = new NodeCreator(this.getElement(), document.createElement('h2'), {
+	const difficultTitle = new NodeCreator(document.createElement('h2'), {
 		classList:['difficulty-title'], text: 'Choose difficulty'
-	});
-	const firstPoint = new NodeCreator(this.getElement(), document.createElement('div'), {classList:['settings-point-inner']});
+	}, this.getElement());
+	const firstPoint = new NodeCreator(document.createElement('div'), {classList:['settings-point-inner']}, this.getElement());
 	
-	const radioDifficultFirst = new NodeCreator(firstPoint.getElement(), document.createElement('input'), {
+	const radioDifficultFirst = new NodeCreator(document.createElement('input'), {
 		id: 'first-difficult',
 		classList:['settings-point'], 
 		attributes: [
 			{name: 'name', value: 'settings-difficult'},
 			{name:'type', value: 'radio'},
 			{name: 'difficult-settings', value: 'easy'}]
-	});
+	}, firstPoint.getElement());
 
 	radioDifficultFirst.getElement().onclick = () => {
 		this.setDifficulty(radioDifficultFirst.getElement());
 	}
 
-	const difficultLabelEasy = new NodeCreator(firstPoint.getElement(), document.createElement('label'), {
+	const difficultLabelEasy = new NodeCreator(document.createElement('label'), {
 		classList:['difficult-label'],
 		text: 'Easy', 
 		attributes: [
 			{name:'for', value: 'first-difficult'}
 			]
-	});
+	}, firstPoint.getElement());
 	
-	const radioDifficultSecond = new NodeCreator(firstPoint.getElement(), document.createElement('input'), {
+	const radioDifficultSecond = new NodeCreator(document.createElement('input'), {
 		id: 'second-difficult',
 		classList:['settings-point'], 
 		attributes: [
 			{name: 'name', value: 'settings-difficult'},
 			{name:'type', value: 'radio'},
 			{name: 'difficult-settings', value: 'medium'}]
-	});
+	}, firstPoint.getElement());
 
 	radioDifficultSecond.getElement().onclick = () => {
 		this.setDifficulty(radioDifficultSecond.getElement());
 	}
 
-	const difficultLabelMedium = new NodeCreator(firstPoint.getElement(), document.createElement('label'), {
+	const difficultLabelMedium = new NodeCreator(document.createElement('label'), {
 		classList:['difficult-label'],
 		text: 'Medium', 
 		attributes: [
 			{name:'for', value: 'second-difficult'}
 			]
-	});
+	}, firstPoint.getElement());
 	
-	const radioDifficultThird = new NodeCreator(firstPoint.getElement(), document.createElement('input'), {
+	const radioDifficultThird = new NodeCreator(document.createElement('input'), {
 		id: 'third-difficult',
 		classList:['settings-point'], 
 		attributes: [
 			{name: 'name', value: 'settings-difficult'},
 			{name:'type', value: 'radio'},
 			{name: 'difficult-settings', value: 'hard'}]
-	});
+	}, firstPoint.getElement());
 
 	radioDifficultThird.getElement().onclick = () => {
 		this.setDifficulty(radioDifficultThird.getElement());
 	}
 
-	const difficultLabelHard = new NodeCreator(firstPoint.getElement(), document.createElement('label'), {
+	const difficultLabelHard = new NodeCreator(document.createElement('label'), {
 		classList:['difficult-label'],
 		text: 'Hard', 
 		attributes: [
 			{name:'for', value: 'third-difficult'}
 			]
-	});
+	}, firstPoint.getElement());
 	this.setChosenDifficultty(this.getElement());
 }
 

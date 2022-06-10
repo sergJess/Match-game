@@ -15,33 +15,33 @@ interface settingsDifficulty {
 }
 export default class Settings extends NodeCreator{
 	private initiateSettings: settingsParams;
-	constructor(parent: HTMLElement, element: HTMLElement, nodeParams: nodeParametrs, initiateSettings:settingsParams){
-		super(parent, element, nodeParams);
+	constructor(element: HTMLElement, nodeParams: nodeParametrs, initiateSettings:settingsParams,  parent?: HTMLElement,){
+		super(element, nodeParams, parent);
 			this.initiateSettings = initiateSettings;
 	
 }
 
 render(): void{
-	 new NodeCreator(this.getElement(), document.createElement('h2'), 
+	 new NodeCreator(document.createElement('h2'), 
 		{
 			classList: ['settings-title'],
    text: 'Settings'
-  }
+  },	this.getElement()
 );
-const settingsInner = new NodeCreator(this.getElement(), document.createElement('div'), {classList:['settings-inner']});
-const difficulty = new Difficulty(settingsInner.getElement(), document.createElement('div'), {}, appSettings);
+const settingsInner = new NodeCreator(document.createElement('div'), {classList:['settings-inner']}, this.getElement());
+const difficulty = new Difficulty(document.createElement('div'), {}, appSettings, settingsInner.getElement());
 difficulty.render();
 
-const secondPoint = new NodeCreator(settingsInner.getElement(), document.createElement('div'), {classList:['settings-point-inner'], text: 'Set volume range'});
-const thirdPoint = new NodeCreator(settingsInner.getElement(), document.createElement('div'), {classList:['settings-point-inner'], text: 'Choose song'});
+const secondPoint = new NodeCreator(document.createElement('div'), {classList:['settings-point-inner'], text: 'Set volume range'}, settingsInner.getElement());
+const thirdPoint = new NodeCreator(document.createElement('div'), {classList:['settings-point-inner'], text: 'Choose song'}, settingsInner.getElement());
 
-const buttonBack = new NodeCreator(settingsInner.getElement(), document.createElement('div'), {
+const buttonBack = new NodeCreator(document.createElement('div'), {
 	classList:['settings-button-back'],
 	text: 'Back'
-});
+}, settingsInner.getElement());
 buttonBack.setOnclick(():void => {
 new NodeEraser([this]).erase();
-new StartPage(content, document.createElement('div'), {classList: ['start-page']}).render();
+new StartPage(document.createElement('div'), {classList: ['start-page']}, content).render();
 });
 
 }

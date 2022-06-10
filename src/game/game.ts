@@ -2,12 +2,12 @@ import './game.css';
 import {NodeCreator, nodeParametrs} from '../helpers/node-creator';
 
 export default class Game extends NodeCreator{
-	constructor(parent: HTMLElement, element: HTMLElement, nodeParams: nodeParametrs){
-		super(parent, element, nodeParams);
-}
+	constructor( element: HTMLElement, nodeParams: nodeParametrs, parent?: HTMLElement){
+		super(element, nodeParams, parent);
+  }
 render(): void {
-	const game = new NodeCreator(this.getElement(), document.createElement('div'), {
+	const game = new NodeCreator(document.createElement('div'), {
 		classList:['game']
-	});
+	}, this.getElement());
 }
 }
