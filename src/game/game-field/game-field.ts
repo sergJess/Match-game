@@ -1,16 +1,15 @@
 import './game-field.css';
 import {NodeCreator, INodeParametrs} from '../../helpers/node-creator';
-interface ICard{
 
-}
+const frontCardImages = [''];
 export default class GameField extends NodeCreator {
 	constructor( element: HTMLElement, nodeParams: INodeParametrs, parent?: HTMLElement){
 		super(element, nodeParams, parent);
 	}
 	duplicateCards(array: Array<NodeCreator>):	Array<NodeCreator>{
-		const duplicatedArray = array.reduce((accum:Array<NodeCreator>, item)=>{
-			const clone = {...item};
-			accum.push(item);
+		const duplicatedArray = array.reduce((accum:Array<NodeCreator>, item) => {
+			const clone = Object.assign({}, item);
+			accum.push(item, clone);
 return accum;
 		}, []);
 return duplicatedArray;
