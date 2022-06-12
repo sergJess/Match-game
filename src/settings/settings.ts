@@ -1,5 +1,5 @@
 import './settings.css';
-import {NodeCreator, nodeParametrs} from '../helpers/node-creator';
+import {NodeCreator, INodeParametrs} from '../helpers/node-creator';
 import NodeEraser from '../helpers/node-eraser';
 import Difficulty from './difficulty/difficulty';
 import StartPage from '../start-page/start-page';
@@ -15,7 +15,7 @@ interface settingsDifficulty {
 }
 export default class Settings extends NodeCreator{
 	private initiateSettings: settingsParams;
-	constructor(element: HTMLElement, nodeParams: nodeParametrs, initiateSettings:settingsParams,  parent?: HTMLElement,){
+	constructor(element: HTMLElement, nodeParams: INodeParametrs, initiateSettings:settingsParams,  parent?: HTMLElement,){
 		super(element, nodeParams, parent);
 			this.initiateSettings = initiateSettings;
 	

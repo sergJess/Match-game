@@ -1,19 +1,19 @@
-interface attributesParams{
+interface IAttributesParams{
 	name: string;
 	value: string;
 }
-export interface nodeParametrs {
+export interface INodeParametrs {
 	classList?: Array<string>
 	id? :string;
 	text?: string;
-	attributes?: Array<attributesParams>
+	attributes?: Array<IAttributesParams>
 }
 
 export class NodeCreator {
 	private element: HTMLElement;
 	private parent?: HTMLElement;
-	private nodeParams: nodeParametrs;
-	constructor(element: HTMLElement, nodeParams: nodeParametrs = {}, parent?: HTMLElement){
+	private nodeParams: INodeParametrs;
+	constructor(element: HTMLElement, nodeParams: INodeParametrs = {}, parent?: HTMLElement){
 		this.element = element;
 		if(parent){
 			this.parent = parent;
@@ -52,7 +52,7 @@ addText(): void{
 }
 addAttributes():void {
 	if(this.nodeParams.attributes?.length){
-		this.nodeParams.attributes.map((item: attributesParams) => {
+		this.nodeParams.attributes.map((item: IAttributesParams) => {
 			this.element.setAttribute(item.name, item.value);
 		});
 	}

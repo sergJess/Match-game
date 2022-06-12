@@ -1,10 +1,10 @@
 import './difficulty.css';
-import {NodeCreator, nodeParametrs} from '../../helpers/node-creator';
+import {NodeCreator, INodeParametrs} from '../../helpers/node-creator';
 import {applicationSettings, SettingsApp} from '../settings-app/settings-app';
 
 export default class Difficulty extends NodeCreator{
 	private settings: SettingsApp;
-	constructor(element: HTMLElement, nodeParams: nodeParametrs, settings: SettingsApp, parent?: HTMLElement){
+	constructor(element: HTMLElement, nodeParams: INodeParametrs, settings: SettingsApp, parent?: HTMLElement){
 		super(element, nodeParams, parent);
 		this.settings = settings;
 	}

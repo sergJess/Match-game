@@ -1,8 +1,8 @@
 import './game.css';
-import {NodeCreator, nodeParametrs} from '../helpers/node-creator';
+import {NodeCreator, INodeParametrs} from '../helpers/node-creator';
 
 export default class Game extends NodeCreator{
-	constructor( element: HTMLElement, nodeParams: nodeParametrs, parent?: HTMLElement){
+	constructor( element: HTMLElement, nodeParams: INodeParametrs, parent?: HTMLElement){
 		super(element, nodeParams, parent);
   }
 render(): void {
