@@ -62,9 +62,13 @@ getParent(): HTMLElement | undefined {
 		return this.parent;
 	}
 }
+getNodeParams(): INodeParametrs {
+return this.nodeParams;
+}
 getElement(): HTMLElement {
 	return this.element;
 }
+
 removeElement(): void {
 	this.element.remove();
 }
@@ -75,5 +79,7 @@ setOnclick(handler: Function): void{
 	this.element.onclick = ()=>{
 		handler();
 	}
+
 }
+
 }
