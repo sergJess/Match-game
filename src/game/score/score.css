@@ -1,0 +1,15 @@
+.score{
+	display: flex;
+	justify-content: center;
+	align-items: center;
+	padding: 1rem;
+}
+.attempts-text{
+	font-size: 4rem;
+	font-style: italic;
+	color: #fff;
+}
+.attempt-count{
+	display: inline-block;
+	padding: 0 0.3rem;
+}
