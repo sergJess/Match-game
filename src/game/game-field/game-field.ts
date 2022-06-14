@@ -14,9 +14,6 @@ export  class GameField extends NodeCreator {
 			const cloneNode = item.getElement().cloneNode(true);
 			const cloneElement = <HTMLElement> cloneNode;			
 			const clone = new NodeCreator(cloneElement, item.getNodeParams());
-			clone.setOnclick(()=>{
-				clone.getElement().style.transform =	'translateX(200px)'
-			});
 			accum.push(item, clone);
 return accum;
 		}, []);
@@ -26,9 +23,6 @@ generateCards(array: Array<string>): Array<NodeCreator> | []{
 const cardsArray: Array<NodeCreator> = [];
 for (let i = 0, length = array.length; i < length; i++){
 	const card = new NodeCreator(document.createElement('div'), {classList: ['card']});
-	card.setOnclick(()=>{
-		card.getElement().style.transform =	'translateX(200px)'
-	});
 	const img = new NodeCreator(document.createElement('img'), {classList: ['card-image']}, card.getElement());
 	img.getElement().setAttribute('src', `${array[i]}`); 
 	cardsArray.push(card);
@@ -36,10 +30,15 @@ for (let i = 0, length = array.length; i < length; i++){
 return cardsArray;
 }
 randomiseCards(array: Array<NodeCreator>):Array<NodeCreator> {
-
+	const arrayCopy = [...array];
+	for (let i = arrayCopy.length - 1; i > 0; i--) {
+		let j = Math.floor(Math.random() * (i + 1));
+		[arrayCopy[i], arrayCopy[j]] = [arrayCopy[j], arrayCopy[i]];
+}
+return arrayCopy;
 }
 render(array: Array<string>): void {
-const cardsArray = this.duplicateCards(this.generateCards(array));
+const cardsArray = this.randomiseCards(this.duplicateCards(this.generateCards(array)));
 cardsArray.forEach((item) => {
 	console.log(item.getElement());
 this.getElement().append(item.getElement());
