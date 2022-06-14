@@ -23,6 +23,7 @@ generateCards(array: Array<string>): Array<NodeCreator> | []{
 const cardsArray: Array<NodeCreator> = [];
 for (let i = 0, length = array.length; i < length; i++){
 	const card = new NodeCreator(document.createElement('div'), {classList: ['card']});
+	const cardBack = new NodeCreator(document.createElement('div'), {classList: ['card-back']}, card.getElement());
 	const img = new NodeCreator(document.createElement('img'), {classList: ['card-image']}, card.getElement());
 	img.getElement().setAttribute('src', `${array[i]}`); 
 	cardsArray.push(card);
@@ -40,8 +41,11 @@ return arrayCopy;
 render(array: Array<string>): void {
 const cardsArray = this.randomiseCards(this.duplicateCards(this.generateCards(array)));
 cardsArray.forEach((item) => {
-	console.log(item.getElement());
+	item.setOnclick(() => {
+item.getElement().classList.add('card-reverse');
+	});
 this.getElement().append(item.getElement());
+
 });
 }
 
