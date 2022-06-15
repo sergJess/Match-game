@@ -25,7 +25,7 @@ startSettings.setOnclick(():void =>{
 
 startButton.setOnclick(():void =>{
   new NodeEraser([this]).erase();
-  new Game(document.createElement('div'),{}, this.getParent()).render();
+  new Game(document.createElement('div'),{classList: ['game-page']}, this.getParent()).render();
 });
 
   }
