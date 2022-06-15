@@ -41,9 +41,32 @@ return arrayCopy;
 render(array: Array<string>): void {
 const cardsArray = this.randomiseCards(this.duplicateCards(this.generateCards(array)));
 cardsArray.forEach((item) => {
-	item.setOnclick(() => {
-item.getElement().classList.add('card-reverse');
-	});
+	const back = item.getElement().querySelector('.card-back');
+	if(back){
+		item.setOnclick(() => {
+			const hasCardReverse = item.getElement().classList.contains('card-reverse');
+			const hasBackInvisible = back.classList.contains('card-back_invisble');
+			if(!hasCardReverse){
+				item.getElement().classList.add('card-reverse');
+			}
+	else{
+		item.getElement().classList.remove('card-reverse');
+	}
+		});
+		item.getElement().ontransitionend = () => {
+			
+			if(item.getElement().classList.contains('card-reverse')){
+					back.classList.add('card-back_invisble');
+					item.getElement().classList.remove('card-reverse')
+				}
+			
+			
+		
+		}
+
+
+	}
+
 this.getElement().append(item.getElement());
 
 });
