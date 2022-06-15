@@ -42,28 +42,26 @@ render(array: Array<string>): void {
 const cardsArray = this.randomiseCards(this.duplicateCards(this.generateCards(array)));
 cardsArray.forEach((item) => {
 	const back = item.getElement().querySelector('.card-back');
+	let isFrontSide = false;
 	if(back){
 		item.setOnclick(() => {
-			const hasCardReverse = item.getElement().classList.contains('card-reverse');
-			const hasBackInvisible = back.classList.contains('card-back_invisble');
-			if(!hasCardReverse){
+			if(!isFrontSide){
 				item.getElement().classList.add('card-reverse');
+				item.getElement().ontransitionend = () => {
+					back.classList.add('card-back_invisble');
+					item.getElement().classList.remove('card-reverse');
+					isFrontSide = true;
+				}
 			}
-	else{
-		item.getElement().classList.remove('card-reverse');
+	if(isFrontSide){
+		item.getElement().classList.add('card-reverse');
+		item.getElement().ontransitionend = () => {
+			back.classList.remove('card-back_invisble');
+			item.getElement().classList.remove('card-reverse');
+			isFrontSide = false;
+		}
 	}
 		});
-		item.getElement().ontransitionend = () => {
-			
-			if(item.getElement().classList.contains('card-reverse')){
-					back.classList.add('card-back_invisble');
-					item.getElement().classList.remove('card-reverse')
-				}
-			
-			
-		
-		}
-
 
 	}
 
