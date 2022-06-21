@@ -22,7 +22,6 @@
 	background-color: #000;
 	opacity: 1;
 	border: 2rem solid #000;
-	/* border-radius: 0.5rem; */
 }
 .card-back_invisble{
 	opacity: 0;
