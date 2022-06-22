@@ -1,8 +1,10 @@
 import {NodeCreator, INodeParametrs} from '../../helpers/node-creator';
+import Score from '../score/score';
 export default class GameController{
 	private clickedCards: Array<HTMLElement> = [];
-	constructor(){
-
+	private score: Score;
+	constructor(score:Score){
+this.score = score;
 	}
 setCardClick(parent:	HTMLElement){
 const cards = parent.querySelectorAll('.card');
@@ -21,15 +23,15 @@ cards.forEach((item)=>{
 					isFrontSide = true;
 				}
 			}
-	if(isFrontSide){
-		element.classList.add('card-reverse');
-		element.ontransitionend = () => {
-			back.classList.remove('card-back_invisble');
-			element.classList.remove('card-reverse');
-			isFrontSide = false;
-		}
-	}
-this.isSameCards();
+	// if(isFrontSide){
+	// 	element.classList.add('card-reverse');
+	// 	element.ontransitionend = () => {
+	// 		back.classList.remove('card-back_invisble');
+	// 		element.classList.remove('card-reverse');
+	// 		isFrontSide = false;
+	// 	}
+	// }
+	this.isSameCards();
 };
 }
 });
@@ -40,30 +42,44 @@ this.isSameCards();
 	}
 	
 	addCard(card: HTMLElement): void{
-		this.clickedCards.push(card);
+		let isTheSame = false;
+		this.clickedCards.forEach((item)=>{
+    if(item === card) isTheSame = true;
+		});
+		if(!isTheSame){
+			this.clickedCards.push(card);
+		}
+		
 	}
-
-	isSameCards():boolean{
+isOpenedTwoCards(): boolean {
+	if (this.clickedCards.length === 2){
+		return true;
+	}
+	return false;
+}
+	isSameCards():void{
 if(this.clickedCards.length === 2){
 const firstCard = this.clickedCards[0];
 const secondCard =	this.clickedCards[1];
 const firstId = firstCard.getAttribute('data-id');
 const secondId = secondCard.getAttribute('data-id');
-  if(firstId && firstId ===	secondId && firstCard !== secondCard){
+const isTheSameIdCards = firstId ===	secondId;
+const hasIds = firstId &&	secondId;
+  if(hasIds && isTheSameIdCards){
+this.score.increaseScore();
 this.clickedCards.forEach((item)=>{
-	item.onclick =	() => {};
-return true;
+	item.onclick = ()=>{};
 });
 		}
 		else{
 			this.clickedCards.forEach((item)=>{
-				item.click();
+				// item.click();
 			}
 			);
 		}
 
 this.clearClickedCards();
 }
-	return false
+
 }
 }

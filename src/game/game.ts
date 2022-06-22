@@ -18,7 +18,7 @@ render(): void {
 	const score = new Score(document.createElement('div'), {classList:['score']}, game.getElement());
 	const gameField = new GameField(document.createElement('div'),{classList:['game-field']}, game.getElement());
 	gameField.render(frontCardImages)
-	const gameController = new GameController();
+	const gameController = new GameController(score);
 	gameController.setCardClick(gameField.getElement());
 	const backToStart = new NodeCreator(document.createElement('button'),{classList:['game-back'], text:'Back To Start Page'}, this.getElement());
 	backToStart.setOnclick(() => {
