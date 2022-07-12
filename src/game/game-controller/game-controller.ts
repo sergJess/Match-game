@@ -59,6 +59,7 @@ const isTheSameIdCards = firstId ===	secondId;
 const hasIds = firstId &&	secondId;
   if(hasIds && isTheSameIdCards){
 this.score.increaseScore();
+
 this.clickedCards.forEach((item)=>{
 	item.onclick = ()=>{};
 });
