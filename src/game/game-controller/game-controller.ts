@@ -108,9 +108,5 @@ this.clickedCards.forEach((item)=>{
 }
 
 }
-differentCardsOpened(): void {
-
-	this.clearClickedCards();
-}
 
 }
