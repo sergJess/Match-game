@@ -109,4 +109,5 @@ this.clickedCards.forEach((item)=>{
 
 }
 
+
 }
