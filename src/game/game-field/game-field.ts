@@ -19,7 +19,7 @@ return accum;
 		}, []);
 return duplicatedArray;
 	}
-generateCards(array: Array<string>): Array<NodeCreator> | []{
+generateCards(array: Array<string>): Array<NodeCreator>{
 const cardsArray: Array<NodeCreator> = [];
 for (let i = 0, length = array.length; i < length; i++){
 	const card = new NodeCreator(document.createElement('div'), {classList: ['card']});
