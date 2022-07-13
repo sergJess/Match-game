@@ -6,11 +6,16 @@ export default class GameController{
 	constructor(score:Score){
 this.score = score;
 	}
-setCardClick(parent:	HTMLElement){
-const cards = parent.querySelectorAll('.card');
-cards.forEach((item)=>{
-	const element = <HTMLElement>item;
-	const back = item.querySelector('.card-back');
+
+setClickToCards(parent:	HTMLElement):void	{
+	const cards = parent.querySelectorAll('.card');
+	cards.forEach((item)=>{
+		const element = <HTMLElement>item;
+		this.setCardClick(element);
+	});
+}
+setCardClick(element:	HTMLElement){
+	const back = element.querySelector('.card-back');
 	element.setAttribute('data-isFrontSide', 'false');
 	  if(back){
 	 	  element.onclick = () => {
@@ -21,12 +26,11 @@ cards.forEach((item)=>{
 					back.classList.add('card-back_invisble');
 					element.classList.remove('card-reverse');
 					element.setAttribute('data-isFrontSide', 'true');
-					// this.sameCardsOpened();
 				}
 			}	
 };
 }
-});
+
 }
 
 	clearClickedCards(){
