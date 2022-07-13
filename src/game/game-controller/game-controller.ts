@@ -21,7 +21,7 @@ cards.forEach((item)=>{
 					back.classList.add('card-back_invisble');
 					element.classList.remove('card-reverse');
 					element.setAttribute('data-isFrontSide', 'true');
-					this.sameCardsOpened();
+					// this.sameCardsOpened();
 				}
 			}	
 };
@@ -34,11 +34,10 @@ cards.forEach((item)=>{
 	}
 	
 	addCard(card: HTMLElement): void{
-		let isTheSame = false;
-		this.clickedCards.forEach((item)=>{
-    if(item === card) isTheSame = true;
-		});
-		if(!isTheSame){
+		const equelCard = (element: HTMLElement) => element === card;
+		const isTheSameCard = this.clickedCards.some(equelCard);
+
+		if(!isTheSameCard){
 			this.clickedCards.push(card);
 		}
 		
