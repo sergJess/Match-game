@@ -19,15 +19,29 @@ setCardClick(element:	HTMLElement){
 	element.setAttribute('data-isFrontSide', 'false');
 	  if(back){
 	 	  element.onclick = () => {
-			this.addCard(element);
+
 			if(element.getAttribute('data-isFrontSide') === 'false'){
-			  	element.classList.add('card-reverse');
-			  	element.ontransitionend = () => {
+			  this.addCard(element);
+			  element.classList.add('card-reverse');
+			  element.ontransitionend = () => {
 					back.classList.add('card-back_invisble');
 					element.classList.remove('card-reverse');
 					element.setAttribute('data-isFrontSide', 'true');
+					
 				}
+				this.sameCardsOpened();
 			}	
+else {
+	    element.setAttribute('data-isFrontSide', 'false');
+	    element.classList.add('card-reverse');
+					element.ontransitionend = () => {
+						back.classList.remove('card-back_invisble');
+						element.classList.remove('card-reverse');
+					
+					}
+					this.sameCardsOpened();
+}
+
 };
 }
 
@@ -51,62 +65,73 @@ isOpenedTwoCards(): boolean {
 	
 }
 
-	sameCardsOpened(): void{
+	sameCardsOpened(): void {
+if( this.clickedCards.length === 1){
+	this.clickedCards[0].onclick = () => {};
+}
 if(this.isOpenedTwoCards()){
 const firstCard = this.clickedCards[0];
 const secondCard =	this.clickedCards[1];
 const firstId = firstCard.getAttribute('data-id');
 const secondId = secondCard.getAttribute('data-id');
-const tempArray = [...this.clickedCards];
 const isTheSameIdCards = firstId ===	secondId;
 const hasIds = firstId &&	secondId;
   if(hasIds && isTheSameIdCards){
 this.score.increaseScore();
-
 this.clickedCards.forEach((item)=>{
-	item.onclick = ()=>{};
+	item.onclick = () => {};
 });
+this.clearClickedCards();
 		}
-	else{
-		this.clickedCards.forEach((item)=>{
+		else {
+setTimeout(() => {
+	this.setCardClick(firstCard);
+	this.clickedCards.forEach((item)=>{
+		item.click()
+	});
+	this.clearClickedCards();
+}, 1200);
+		}
+	// else{
+	// 	this.clickedCards.forEach((item)=>{
 			
-			const back = item.querySelector('.card-back');
-			item.onclick = ()=>{
-				item.classList.add('card-reverse');
-        item.ontransitionend = () => {
-            if(back){
-							back.classList.remove('card-back_invisble');
-							item.classList.remove('card-reverse');
-						}
-						item.setAttribute('data-isFrontSide', 'false');
-				}
-			};
-					});
+	// 		const back = item.querySelector('.card-back');
+	// 		item.onclick = ()=>{
+	// 			item.classList.add('card-reverse');
+ //        item.ontransitionend = () => {
+ //            if(back){
+	// 						back.classList.remove('card-back_invisble');
+	// 						item.classList.remove('card-reverse');
+	// 					}
+	// 					item.setAttribute('data-isFrontSide', 'false');
+	// 			}
+	// 		};
+	// 				});
 
-					setTimeout(() => {
-						firstCard.click();
-						secondCard.click();
-						this.clearClickedCards();
-						tempArray.forEach((item)=>{
-							const back = item.querySelector('.card-back');
-							if(back){
-								item.onclick = () => {
-									this.addCard(item);
-									if(item.getAttribute('data-isFrontSide') === 'false'){
-											item.classList.add('card-reverse');
-											item.ontransitionend = () => {
-											back.classList.add('card-back_invisble');
-											item.classList.remove('card-reverse');
-											item.setAttribute('data-isFrontSide', 'true');
-											this.sameCardsOpened();
-										}
-									}	
-								}
-							}
+	// 				setTimeout(() => {
+	// 					firstCard.click();
+	// 					secondCard.click();
+	// 					this.clearClickedCards();
+	// 					tempArray.forEach((item)=>{
+	// 						const back = item.querySelector('.card-back');
+	// 						if(back){
+	// 							item.onclick = () => {
+	// 								this.addCard(item);
+	// 								if(item.getAttribute('data-isFrontSide') === 'false'){
+	// 										item.classList.add('card-reverse');
+	// 										item.ontransitionend = () => {
+	// 										back.classList.add('card-back_invisble');
+	// 										item.classList.remove('card-reverse');
+	// 										item.setAttribute('data-isFrontSide', 'true');
+	// 										this.sameCardsOpened();
+	// 									}
+	// 								}	
+	// 							}
+	// 						}
 							
-						});
-					}, 500);
-	}
+	// 					});
+	// 				}, 500);
+	// }
 
 
 }
