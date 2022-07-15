@@ -19,13 +19,16 @@ setCardClick(element:	HTMLElement){
 	const back = element.querySelector('.card-back');
 	  if(back){
 	 	  element.onclick = () => {
-     switch(true){
+					if(element.getAttribute('data-isClickable') === 'true'){
+						element.setAttribute('data-isClickable', 'false');
+							switch(true){
 	      case element.getAttribute('data-isFrontSide') === 'false':
 		       this.addCard(element);
 		       element.classList.add('card-reverse');
 		       element.ontransitionend = () => {
 		         back.classList.add('card-back_invisble');
 		         element.classList.remove('card-reverse');
+											element.setAttribute('data-isClickable', 'true');
 	        }
 	        element.setAttribute('data-isFrontSide', 'true');
 	        this.sameCardsOpened();
@@ -35,12 +38,14 @@ setCardClick(element:	HTMLElement){
 		       element.ontransitionend = () => {
 		        	back.classList.remove('card-back_invisble');
 			        element.classList.remove('card-reverse');
-
+											element.setAttribute('data-isClickable', 'true');
 	        	}
 	       	element.setAttribute('data-isFrontSide', 'false');
 	       	this.sameCardsOpened();
 	       	break;
 }
+					}
+
 
 
 };
@@ -93,47 +98,7 @@ setTimeout(() => {
 	this.clearClickedCards();
 }, 1200);
 		}
-	// else{
-	// 	this.clickedCards.forEach((item)=>{
-			
-	// 		const back = item.querySelector('.card-back');
-	// 		item.onclick = ()=>{
-	// 			item.classList.add('card-reverse');
- //        item.ontransitionend = () => {
- //            if(back){
-	// 						back.classList.remove('card-back_invisble');
-	// 						item.classList.remove('card-reverse');
-	// 					}
-	// 					item.setAttribute('data-isFrontSide', 'false');
-	// 			}
-	// 		};
-	// 				});
-
-	// 				setTimeout(() => {
-	// 					firstCard.click();
-	// 					secondCard.click();
-	// 					this.clearClickedCards();
-	// 					tempArray.forEach((item)=>{
-	// 						const back = item.querySelector('.card-back');
-	// 						if(back){
-	// 							item.onclick = () => {
-	// 								this.addCard(item);
-	// 								if(item.getAttribute('data-isFrontSide') === 'false'){
-	// 										item.classList.add('card-reverse');
-	// 										item.ontransitionend = () => {
-	// 										back.classList.add('card-back_invisble');
-	// 										item.classList.remove('card-reverse');
-	// 										item.setAttribute('data-isFrontSide', 'true');
-	// 										this.sameCardsOpened();
-	// 									}
-	// 								}	
-	// 							}
-	// 						}
-							
-	// 					});
-	// 				}, 500);
-	// }
-
+	
 
 }
 

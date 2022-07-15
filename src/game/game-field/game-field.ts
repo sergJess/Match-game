@@ -22,7 +22,7 @@ return duplicatedArray;
 generateCards(array: Array<string>): Array<NodeCreator>{
 const cardsArray: Array<NodeCreator> = [];
 for (let i = 0, length = array.length; i < length; i++){
-	const card = new NodeCreator(document.createElement('div'), {classList: ['card'], attributes:[{name: 'data-isFrontSide', value: 'false'}]});
+	const card = new NodeCreator(document.createElement('div'), {classList: ['card'], attributes:[{name: 'data-isFrontSide', value: 'false'}, {name: 'data-isClickable', value: 'true'}]});
 	const cardBack = new NodeCreator(document.createElement('div'), {classList: ['card-back']}, card.getElement());
 	const img = new NodeCreator(document.createElement('img'), {classList: ['card-image']}, card.getElement());
 	img.getElement().setAttribute('src', `${array[i]}`); 
