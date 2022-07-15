@@ -14,33 +14,34 @@ setClickToCards(parent:	HTMLElement):void	{
 		this.setCardClick(element);
 	});
 }
+
 setCardClick(element:	HTMLElement){
 	const back = element.querySelector('.card-back');
-	element.setAttribute('data-isFrontSide', 'false');
 	  if(back){
 	 	  element.onclick = () => {
+     switch(true){
+	      case element.getAttribute('data-isFrontSide') === 'false':
+		       this.addCard(element);
+		       element.classList.add('card-reverse');
+		       element.ontransitionend = () => {
+		         back.classList.add('card-back_invisble');
+		         element.classList.remove('card-reverse');
+	        }
+	        element.setAttribute('data-isFrontSide', 'true');
+	        this.sameCardsOpened();
+	        break;
+	      case element.getAttribute('data-isFrontSide') === 'true':
+		       element.classList.add('card-reverse');
+		       element.ontransitionend = () => {
+		        	back.classList.remove('card-back_invisble');
+			        element.classList.remove('card-reverse');
 
-			if(element.getAttribute('data-isFrontSide') === 'false'){
-			  this.addCard(element);
-			  element.classList.add('card-reverse');
-			  element.ontransitionend = () => {
-					back.classList.add('card-back_invisble');
-					element.classList.remove('card-reverse');
-					element.setAttribute('data-isFrontSide', 'true');
-					
-				}
-				this.sameCardsOpened();
-			}	
-else {
-	    element.setAttribute('data-isFrontSide', 'false');
-	    element.classList.add('card-reverse');
-					element.ontransitionend = () => {
-						back.classList.remove('card-back_invisble');
-						element.classList.remove('card-reverse');
-					
-					}
-					this.sameCardsOpened();
+	        	}
+	       	element.setAttribute('data-isFrontSide', 'false');
+	       	this.sameCardsOpened();
+	       	break;
 }
+
 
 };
 }
