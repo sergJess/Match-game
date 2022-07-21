@@ -6,6 +6,7 @@ import NodeEraser from '../helpers/node-eraser';
 import {content} from '../index';
 import StartPage from '../start-page/start-page';
 import GameController from './game-controller/game-controller';
+import {Timer} from './timer/timer';
 
 export default class Game extends NodeCreator{
 	constructor( element: HTMLElement, nodeParams: INodeParametrs, parent?: HTMLElement){
@@ -20,6 +21,8 @@ render(): void {
 	gameField.render(frontCardImages)
 	const gameController = new GameController(score);
 	gameController.setClickToCards(gameField.getElement());
+	const timer = new Timer(game.getElement(), 10, () => {console.log('Jess')});
+	timer.start();
 	const backToStart = new NodeCreator(document.createElement('button'),{classList:['game-back'], text:'Back To Start Page'}, this.getElement());
 	backToStart.setOnclick(() => {
 new NodeEraser([this]).erase();
