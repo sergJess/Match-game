@@ -1,20 +1,26 @@
 import './timer.css';
 import {NodeCreator, INodeParametrs} from '../../helpers/node-creator';
-type  timerCallback = () => void;
+interface ITimerParams  {
+classList : Array<string>;
+timerValue: number;
+shouldDelete:	boolean;
+}
+type TimerClassList = Array<string>;
 export class Timer{
-	private timerElement = new NodeCreator(document.createElement('div'), {classList: ['timer']});
+	private timerElement = new NodeCreator(document.createElement('div'), {classList: this.parameters.classList});
 	private callback: Function;
 	private timerId = setTimeout(() =>{}, 0);
 
-	constructor(private parent: HTMLElement, private timerNums: number, private action: Function) {
+	constructor(private parent: HTMLElement, private parameters:ITimerParams	, private action: Function) {
 	this.callback =	action;
+	
 	this.parent.append(this.timerElement.getElement());
 }
 
-setTimer(num:	number): void{
-	if(num >= 0){
+setTimer(value:	number): void{
+	if(value >= 0){
    const element = this.timerElement.getElement();
-   element.textContent = `${num}`;
+   element.textContent = `${value}`;
 	}
 	else{
 		 throw new Error('Timer can not be negative');
@@ -22,12 +28,15 @@ setTimer(num:	number): void{
 }
 
 start(): void{
-this.setTimer(this.timerNums);
+this.setTimer(this.parameters.timerValue);
 this.updateTimer();
 }
+ deleteTimer(): void {
+		this.timerElement.removeElement();
+	}
 
 updateTimer(): void {
-let timerCount = this.timerNums - 1;
+let timerCount = this.parameters.timerValue - 1;
 
 	const rec = () => {
 		if(timerCount >= 0) {
@@ -36,8 +45,11 @@ let timerCount = this.timerNums - 1;
 		  this.timerId = setTimeout(rec, 1000);
 	   }
 	 else {
-			 this.action();
+			 this.callback();
 	  	clearTimeout(this.timerId);
+				if(this.parameters.shouldDelete){
+					this.deleteTimer();
+				}
 	 }
 	};
 	this.timerId = setTimeout(rec

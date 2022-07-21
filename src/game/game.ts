@@ -16,13 +16,13 @@ render(): void {
 	const game = new NodeCreator(document.createElement('div'), {
 		classList:['game']
 	}, this.getElement());
+	const timer = new Timer(game.getElement(), {classList: ['timer', 'game-timer'], timerValue: 10, shouldDelete: true}, () => {console.log('Jess')});
+	timer.start();
 	const score = new Score(document.createElement('div'), {classList:['score']}, game.getElement());
 	const gameField = new GameField(document.createElement('div'),{classList:['game-field']}, game.getElement());
 	gameField.render(frontCardImages)
 	const gameController = new GameController(score);
 	gameController.setClickToCards(gameField.getElement());
-	const timer = new Timer(game.getElement(), 10, () => {console.log('Jess')});
-	timer.start();
 	const backToStart = new NodeCreator(document.createElement('button'),{classList:['game-back'], text:'Back To Start Page'}, this.getElement());
 	backToStart.setOnclick(() => {
 new NodeEraser([this]).erase();
