@@ -58,8 +58,8 @@ let timerCount = this.parameters.timerValue - 1;
 	, 1000);
 	
 }
-setAdditionalCallback(f: Function): void{
-this.additionCallback = f;
+setAdditionalCallback(f: Function, args: Array<HTMLElement> = []): void{
+this.additionCallback = f.bind(this, ...args);
 }
 setAction(f: Function): void{
 	f();
