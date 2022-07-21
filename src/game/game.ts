@@ -22,6 +22,7 @@ render(): void {
 	const gameField = new GameField(document.createElement('div'),{classList:['game-field']}, game.getElement());
 	gameField.render(frontCardImages)
 	const gameController = new GameController(score);
+	
 	gameController.setClickToCards(gameField.getElement());
 	const backToStart = new NodeCreator(document.createElement('button'),{classList:['game-back'], text:'Back To Start Page'}, this.getElement());
 	backToStart.setOnclick(() => {

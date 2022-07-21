@@ -10,6 +10,7 @@ export class Timer{
 	private timerElement = new NodeCreator(document.createElement('div'), {classList: this.parameters.classList});
 	private callback: Function;
 	private timerId = setTimeout(() =>{}, 0);
+	private additionCallback: Function = ()=>{};
 
 	constructor(private parent: HTMLElement, private parameters:ITimerParams	, private action: Function) {
 	this.callback =	action;
@@ -46,6 +47,7 @@ let timerCount = this.parameters.timerValue - 1;
 	   }
 	 else {
 			 this.callback();
+			 this.setAction(this.additionCallback);
 	  	clearTimeout(this.timerId);
 				if(this.parameters.shouldDelete){
 					this.deleteTimer();
@@ -56,5 +58,10 @@ let timerCount = this.parameters.timerValue - 1;
 	, 1000);
 	
 }
-
+setAdditionalCallback(f: Function): void{
+this.additionCallback = f;
+}
+setAction(f: Function): void{
+	f();
+}
 }

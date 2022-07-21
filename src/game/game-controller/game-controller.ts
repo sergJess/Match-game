@@ -14,42 +14,17 @@ setClickToCards(parent:	HTMLElement):void	{
 		this.setCardClick(element);
 	});
 }
+hideCards(parent:	HTMLElement): void {
+	const cards = parent.querySelectorAll('.card');
+	cards.forEach((item)=>{
+		const element = <HTMLElement>item;
+		
+	});
+}
+
 
 setCardClick(element:	HTMLElement){
-// 	const back = element.querySelector('.card-back');
-// 	  if(back){
-// 	 	  element.onclick = () => {
-// 					if(element.getAttribute('data-isClickable') === 'true'){
-// 						element.setAttribute('data-isClickable', 'false');
-// 							switch(true){
-// 	      case element.getAttribute('data-isFrontSide') === 'false':
-// 		       this.addCard(element);
-// 		       element.classList.add('card-reverse');
-// 		       element.ontransitionend = () => {
-// 		         back.classList.add('card-back_invisble');
-// 		         element.classList.remove('card-reverse');
-// 											element.setAttribute('data-isClickable', 'true');
-// 	        }
-// 	        element.setAttribute('data-isFrontSide', 'true');
-// 	        this.sameCardsOpened();
-// 	        break;
-// 	      case element.getAttribute('data-isFrontSide') === 'true':
-// 		       element.classList.add('card-reverse');
-// 		       element.ontransitionend = () => {
-// 		        	back.classList.remove('card-back_invisble');
-// 			        element.classList.remove('card-reverse');
-// 											element.setAttribute('data-isClickable', 'true');
-// 	        	}
-// 	       	element.setAttribute('data-isFrontSide', 'false');
-// 	       	this.sameCardsOpened();
-// 	       	break;
-// }
-// 					}
 
-
-
-// };
-// }
 
 }
 
@@ -82,22 +57,7 @@ const firstId = firstCard.getAttribute('data-id');
 const secondId = secondCard.getAttribute('data-id');
 const isTheSameIdCards = firstId ===	secondId;
 const hasIds = firstId &&	secondId;
-  if(hasIds && isTheSameIdCards){
-this.score.increaseScore();
-this.clickedCards.forEach((item)=>{
-	item.onclick = () => {};
-});
-this.clearClickedCards();
-		}
-		else {
-setTimeout(() => {
-	this.setCardClick(firstCard);
-	this.clickedCards.forEach((item)=>{
-		item.click()
-	});
-	this.clearClickedCards();
-}, 1200);
-		}
+ 
 	
 
 }
