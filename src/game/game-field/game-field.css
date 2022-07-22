@@ -20,12 +20,10 @@
 	height: 100%;
 	width: 100%;
 	background-color: #000;
-	opacity: 1;
+	opacity: 0;
 	border: 2rem solid #000;
 }
-.card-back_invisble{
-	opacity: 0;
-}
+
 .card-image{
 	max-width: 350px;
 	height: 100%;

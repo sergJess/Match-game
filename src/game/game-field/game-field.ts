@@ -8,6 +8,7 @@ export  class GameField extends NodeCreator {
 	constructor( element: HTMLElement, nodeParams: INodeParametrs, parent?: HTMLElement){
 		super(element, nodeParams, parent);
 	}
+
 	duplicateCards(array: Array<NodeCreator>):	Array<NodeCreator>{
 		const duplicatedArray = array.reduce((accum:Array<NodeCreator>, item, index: number) => {
 			item.getElement().setAttribute('data-id', `${index}`);
@@ -19,13 +20,16 @@ return accum;
 		}, []);
 return duplicatedArray;
 	}
+
 generateCards(array: Array<string>): Array<NodeCreator>{
 const cardsArray: Array<NodeCreator> = [];
 for (let i = 0, length = array.length; i < length; i++){
 	const card = new NodeCreator(document.createElement('div'), {classList: ['card'], attributes:[{name: 'data-isFrontSide', value: 'true'}, {name: 'data-isClickable', value: 'true'}]});
-	const cardBack = new NodeCreator(document.createElement('div'), {classList: ['card-back','card-back_invisble' ]}, card.getElement());
-	const img = new NodeCreator(document.createElement('img'), {classList: ['card-image']}, card.getElement());
-	img.getElement().setAttribute('src', `${array[i]}`); 
+	const cardInner = new NodeCreator(document.createElement('div'),{classList: ['cards-inner']}, card.getElement());
+	const cardFront = new NodeCreator(document.createElement('div'), {classList:['card-front']}, cardInner.getElement());
+	const img = new NodeCreator(document.createElement('img'), {classList: ['card-image'], attributes: [{name: 'src', value: `${array[i]}`}]}, cardFront.getElement());
+	const cardBack = new NodeCreator(document.createElement('div'), {classList: ['card-back' ]}, cardInner.getElement());
+
 	cardsArray.push(card);
 }
 return cardsArray;
@@ -38,6 +42,7 @@ randomiseCards(array: Array<NodeCreator>):Array<NodeCreator> {
 }
 return arrayCopy;
 }
+
 render(array: Array<string>): void {
 const cardsArray = this.randomiseCards(this.duplicateCards(this.generateCards(array)));
 cardsArray.forEach((item) => {

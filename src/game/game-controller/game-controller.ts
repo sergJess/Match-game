@@ -18,10 +18,7 @@ hideCards(parent:	HTMLElement): void {
 	const cards = parent.querySelectorAll('.card');
 	cards.forEach((item)=>{
 		const element = <HTMLElement>item;
-		const back = element.querySelector('.card-back');
-		if (back){
-			back.classList.remove('card-back_invisble');
-		}
+	
 
 	});
 }
