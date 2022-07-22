@@ -14,12 +14,15 @@ setClickToCards(parent:	HTMLElement):void	{
 		this.setCardClick(element);
 	});
 }
+
 hideCards(parent:	HTMLElement): void {
 	const cards = parent.querySelectorAll('.card');
 	cards.forEach((item)=>{
 		const element = <HTMLElement>item;
-	
-
+	const cardInner = element.querySelector('.card-inner');
+    if(cardInner){
+					cardInner.classList.add('card-inner_rotated');
+				}
 	});
 }
 

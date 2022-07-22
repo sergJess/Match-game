@@ -5,26 +5,41 @@
 	padding: 2rem;
 }
 .card{
-	position: relative;
+	max-width: 35rem;
+	height: 28rem;
 	cursor: pointer;
-	transform: rotateY(0);
-	transition: transform 0.5s  ease-in-out;
+	perspective: 1000px;
+	background-color: transparent;
 }
-.card-reverse{
-	transform: rotateY(90deg);
+.card-inner{
+	position: relative;
+	height: 100%;
+	transition: transform 0.8s;
+ transform-style: preserve-3d;
 }
+
+.card-inner_rotated {
+	transform: rotateY(-180deg);
+}
+
 .card-back{
 	position: absolute;
 	top: 0;
-	left: 0;
-	height: 100%;
 	width: 100%;
-	background-color: #000;
-	opacity: 0;
-	border: 2rem solid #000;
-}
-
-.card-image{
-	max-width: 350px;
 	height: 100%;
+	background-color: #000;
+	border-radius: 4rem;
+	backface-visibility: hidden;
+	transform: rotateY(-180deg);
+}
+.card-front{
+	position: relative;
+	height: 100%;
+	backface-visibility: hidden;
+
+}
+.card-image{
+	border-radius: 4rem;
+	width: 100%;
+height: 100%;
 }

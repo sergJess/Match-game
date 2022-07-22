@@ -25,7 +25,7 @@ generateCards(array: Array<string>): Array<NodeCreator>{
 const cardsArray: Array<NodeCreator> = [];
 for (let i = 0, length = array.length; i < length; i++){
 	const card = new NodeCreator(document.createElement('div'), {classList: ['card'], attributes:[{name: 'data-isFrontSide', value: 'true'}, {name: 'data-isClickable', value: 'true'}]});
-	const cardInner = new NodeCreator(document.createElement('div'),{classList: ['cards-inner']}, card.getElement());
+	const cardInner = new NodeCreator(document.createElement('div'),{classList: ['card-inner']}, card.getElement());
 	const cardFront = new NodeCreator(document.createElement('div'), {classList:['card-front']}, cardInner.getElement());
 	const img = new NodeCreator(document.createElement('img'), {classList: ['card-image'], attributes: [{name: 'src', value: `${array[i]}`}]}, cardFront.getElement());
 	const cardBack = new NodeCreator(document.createElement('div'), {classList: ['card-back' ]}, cardInner.getElement());
