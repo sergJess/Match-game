@@ -16,7 +16,7 @@ render(): void {
 	const game = new NodeCreator(document.createElement('div'), {
 		classList:['game']
 	}, this.getElement());
-	const timer = new Timer(game.getElement(), {classList: ['timer', 'game-timer'], timerValue: 3, shouldDelete: true}, () => {console.log('Jess')});
+	const timer = new Timer(game.getElement(), {classList: ['timer', 'game-timer'], timerValue: 1, shouldDelete: true}, () => {console.log('Jess')});
 	timer.start();
 	const score = new Score(document.createElement('div'), {classList:['score']}, game.getElement());
 	const gameField = new GameField(document.createElement('div'),{classList:['game-field']}, game.getElement());

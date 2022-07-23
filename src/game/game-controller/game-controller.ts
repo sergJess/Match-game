@@ -26,9 +26,24 @@ hideCards(parent:	HTMLElement): void {
 	});
 }
 
-
 setCardClick(element:	HTMLElement){
+element.onclick = () => {
+const isClickable = element.getAttribute('data-is-clickable');
+const cardInner = element.querySelector('.card-inner');
+if((isClickable === 'true') && cardInner){
+	this.addCard(element);
+	this.openedOneCard();
+	cardInner.classList.remove('card-inner_rotated')
+	  if(this.isOpenedTwoCards() && this.isSameOpenedTwoCards()){
+    this.sameTwoCardsOpened();
+	   }
+	  if(this.isOpenedTwoCards() && !!this.isSameOpenedTwoCards()){
+	this.differentTwoCardsOpened();
 
+	  }
+}
+
+}
 
 }
 
@@ -45,28 +60,47 @@ setCardClick(element:	HTMLElement){
 		}
 		
 	}
+
 isOpenedTwoCards(): boolean {
 	return this.clickedCards.length === 2 ? true: false;
 	
 }
-
-	sameCardsOpened(): void {
-if( this.clickedCards.length === 1){
-	this.clickedCards[0].onclick = () => {};
+openedOneCard(): void {
+	if(this.clickedCards.length === 1){
+// this.setCardsInactive();
+	}
 }
-if(this.isOpenedTwoCards()){
-const firstCard = this.clickedCards[0];
-const secondCard =	this.clickedCards[1];
-const firstId = firstCard.getAttribute('data-id');
-const secondId = secondCard.getAttribute('data-id');
-const isTheSameIdCards = firstId ===	secondId;
-const hasIds = firstId &&	secondId;
- 
-	
-
+setCardsInactive(): void{
+	this.clickedCards.forEach((item)=>{
+		item.setAttribute('data-is-clickable', 'false');
+	});
+}
+isSameOpenedTwoCards():boolean{
+	  const firstCard = this.clickedCards[0];
+	  const secondCard =	this.clickedCards[1];
+	  const firstId = firstCard.getAttribute('data-id');
+	  const secondId = secondCard.getAttribute('data-id');
+	  const isTheSameIdCards = firstId ===	secondId;
+	  const hasIds = firstId &&	secondId;
+	  return !!hasIds && isTheSameIdCards;
+}
+	sameTwoCardsOpened(): void {
+	 this.setCardsInactive();
+  this.clearClickedCards();
+  this.score.increaseScore();
 }
 
-}
+differentTwoCardsOpened():void{
+this.clickedCards.forEach((item)=>{
+	const cardInner = item.querySelector('.card-inner');
+	if(cardInner){
+		item.setAttribute('data-is-clickable', 'true');
+		cardInner.classList.add('card-inner_rotated');
+		console.log('Jessie')
+	}
 
+});
+this.clearClickedCards();
+}
 
 }
