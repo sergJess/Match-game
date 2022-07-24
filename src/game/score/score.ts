@@ -2,8 +2,8 @@ import './score.css';
 import {NodeCreator, INodeParametrs} from '../../helpers/node-creator';
 
 export default class Score extends NodeCreator{
-	private attempts = new NodeCreator(document.createElement('p'),{classList: ['attempts-text'], text: 'attempts:'}, this.getElement());
-	private attemptsCount = new NodeCreator(document.createElement('span'), {classList: ['attempt-count']}, this.attempts.getElement());
+	private scoreInner = new NodeCreator(document.createElement('p'),{classList: ['attempts-text'], text: 'score:'}, this.getElement());
+	private attemptsCount = new NodeCreator(document.createElement('span'), {classList: ['attempt-count']}, this.scoreInner.getElement());
 private score = 0;
 
 	constructor( element: HTMLElement, nodeParams: INodeParametrs, parent?: HTMLElement){

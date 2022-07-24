@@ -21,6 +21,7 @@ hideCards(parent:	HTMLElement): void {
 		const element = <HTMLElement>item;
 	const cardInner = element.querySelector('.card-inner');
     if(cardInner){
+					element.setAttribute('data-is-clickable', 'true');
 					cardInner.classList.add('card-inner_rotated');
 				}
 	});
@@ -37,9 +38,9 @@ if((isClickable === 'true') && cardInner){
 	  if(this.isOpenedTwoCards() && this.isSameOpenedTwoCards()){
     this.sameTwoCardsOpened();
 	   }
-	  if(this.isOpenedTwoCards() && !!this.isSameOpenedTwoCards()){
-	this.differentTwoCardsOpened();
-
+	  if(this.isOpenedTwoCards() && !this.isSameOpenedTwoCards()){
+       setTimeout(this.differentTwoCardsOpened.bind(this), 900);
+					
 	  }
 }
 
@@ -67,7 +68,7 @@ isOpenedTwoCards(): boolean {
 }
 openedOneCard(): void {
 	if(this.clickedCards.length === 1){
-// this.setCardsInactive();
+this.setCardsInactive();
 	}
 }
 setCardsInactive(): void{
@@ -90,13 +91,13 @@ isSameOpenedTwoCards():boolean{
   this.score.increaseScore();
 }
 
-differentTwoCardsOpened():void{
+differentTwoCardsOpened(): void{
 this.clickedCards.forEach((item)=>{
 	const cardInner = item.querySelector('.card-inner');
 	if(cardInner){
 		item.setAttribute('data-is-clickable', 'true');
 		cardInner.classList.add('card-inner_rotated');
-		console.log('Jessie')
+
 	}
 
 });
