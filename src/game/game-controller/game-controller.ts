@@ -55,7 +55,6 @@ if((isClickable === 'true') && cardInner){
 	addCard(card: HTMLElement): void{
 		const equelCard = (element: HTMLElement) => element === card;
 		const isTheSameCard = this.clickedCards.some(equelCard);
-
 		if(!isTheSameCard){
 			this.clickedCards.push(card);
 		}
@@ -66,17 +65,20 @@ isOpenedTwoCards(): boolean {
 	return this.clickedCards.length === 2 ? true: false;
 	
 }
+
 openedOneCard(): void {
 	if(this.clickedCards.length === 1){
 this.setCardsInactive();
 	}
 }
+
 setCardsInactive(): void{
 	this.clickedCards.forEach((item)=>{
 		item.setAttribute('data-is-clickable', 'false');
 	});
 }
-isSameOpenedTwoCards():boolean{
+
+isSameOpenedTwoCards(): boolean{
 	  const firstCard = this.clickedCards[0];
 	  const secondCard =	this.clickedCards[1];
 	  const firstId = firstCard.getAttribute('data-id');
@@ -85,6 +87,7 @@ isSameOpenedTwoCards():boolean{
 	  const hasIds = firstId &&	secondId;
 	  return !!hasIds && isTheSameIdCards;
 }
+
 	sameTwoCardsOpened(): void {
 	 this.setCardsInactive();
   this.clearClickedCards();
@@ -97,7 +100,6 @@ this.clickedCards.forEach((item)=>{
 	if(cardInner){
 		item.setAttribute('data-is-clickable', 'true');
 		cardInner.classList.add('card-inner_rotated');
-
 	}
 
 });

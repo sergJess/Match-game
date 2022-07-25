@@ -11,6 +11,9 @@
 	perspective: 1000px;
 	background-color: transparent;
 }
+.card_inactive{
+	cursor: not-allowed;
+}
 .card-inner{
 	position: relative;
 	height: 100%;
