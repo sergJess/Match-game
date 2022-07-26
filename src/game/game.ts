@@ -21,9 +21,8 @@ render(): void {
 	const score = new Score(document.createElement('div'), {classList:['score']}, game.getElement());
 	const gameField = new GameField(document.createElement('div'),{classList:['game-field']}, game.getElement());
 	gameField.render(frontCardImages)
-	const gameController = new GameController(score);
+	const gameController = new GameController(gameField.getElement(), score);
 	timer.setAdditionalCallback(gameController.hideCards, [gameField.getElement()]);
-	gameController.setClickToCards(gameField.getElement());
 	const backToStart = new NodeCreator(document.createElement('button'),{classList:['game-back'], text:'Back To Start Page'}, this.getElement());
 	backToStart.setOnclick(() => {
 new NodeEraser([this]).erase();

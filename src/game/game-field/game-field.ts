@@ -34,7 +34,7 @@ for (let i = 0, length = array.length; i < length; i++){
 }
 return cardsArray;
 }
-randomiseCards(array: Array<NodeCreator>):Array<NodeCreator> {
+randomiseCards(array: Array<NodeCreator>): Array<NodeCreator> {
 	const arrayCopy = [...array];
 	for (let i = arrayCopy.length - 1; i > 0; i--) {
 		let j = Math.floor(Math.random() * (i + 1));

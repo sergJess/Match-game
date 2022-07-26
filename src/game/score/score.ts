@@ -19,7 +19,7 @@ private score = 0;
 			this.score += step;
 			this.setAttemptsCount(this.score);
 		}
-		getAttemptsCount(): number{
+		getScore(): number{
 			return this.score;
 		}
 	

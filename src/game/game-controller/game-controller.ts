@@ -1,17 +1,29 @@
-import {NodeCreator, INodeParametrs} from '../../helpers/node-creator';
 import Score from '../score/score';
 export default class GameController{
 	private clickedCards: Array<HTMLElement> = [];
+ private  totalCards = 0;
 	private score: Score;
-	constructor(score:Score){
-this.score = score;
+
+	constructor(private cardInner:HTMLElement, score: Score){
+   this.score = score;
+			this.setClickToCards(this.cardInner);
 	}
 
-setClickToCards(parent:	HTMLElement):void	{
+setTotalCards(value: number):	void{
+this.totalCards = value;
+}
+
+isGameFinished(): boolean{
+	return this.score.getScore() === this.totalCards / 2 ;
+}
+
+setClickToCards(parent:	HTMLElement): void	{
 	const cards = parent.querySelectorAll('.card');
+	this.setTotalCards(cards.length);
 	cards.forEach((item)=>{
 		const element = <HTMLElement>item;
 		this.setCardClick(element);
+
 	});
 }
 
@@ -92,6 +104,9 @@ isSameOpenedTwoCards(): boolean{
 	 this.setCardsInactive();
   this.clearClickedCards();
   this.score.increaseScore();
+		if(this.isGameFinished()){
+			console.log('end')
+		}
 }
 
 differentTwoCardsOpened(): void{
