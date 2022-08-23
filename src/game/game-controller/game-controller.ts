@@ -4,7 +4,7 @@ export default class GameController{
  private  totalCards = 0;
 	private score: Score;
 
-	constructor(private cardInner:HTMLElement, score: Score){
+	constructor(private cardInner: HTMLElement, score: Score){
    this.score = score;
 			this.setClickToCards(this.cardInner);
 	}
