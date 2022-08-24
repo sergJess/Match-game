@@ -1,4 +1,5 @@
 import Score from '../score/score';
+import GameFinish from '../game-finish/game-finish';
 export default class GameController{
 	private clickedCards: Array<HTMLElement> = [];
  private  totalCards = 0;
@@ -100,12 +101,19 @@ isSameOpenedTwoCards(): boolean{
 	  return !!hasIds && isTheSameIdCards;
 }
 
+gameFinish(gameFinish: GameFinish):void{
+gameFinish.setScore(this.score.getScore());
+gameFinish.render();
+		console.log('FF7')
+}
+
 	sameTwoCardsOpened(): void {
 	 this.setCardsInactive();
   this.clearClickedCards();
   this.score.increaseScore();
 		if(this.isGameFinished()){
-			console.log('end')
+			this.gameFinish.bind(this);
+	
 		}
 }
 

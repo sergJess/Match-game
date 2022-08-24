@@ -7,6 +7,7 @@ import {content} from '../index';
 import StartPage from '../start-page/start-page';
 import GameController from './game-controller/game-controller';
 import {Timer} from './timer/timer';
+import GameFinish from './game-finish/game-finish';
 
 export default class Game extends NodeCreator{
 	constructor( element: HTMLElement, nodeParams: INodeParametrs, parent?: HTMLElement){
@@ -23,6 +24,8 @@ render(): void {
 	gameField.render(frontCardImages)
 	const gameController = new GameController(gameField.getElement(), score);
 	timer.setAdditionalCallback(gameController.hideCards, [gameField.getElement()]);
+	const gameFinish = new GameFinish(document.createElement('div'), {classList:['game-finish']}, game.getElement());
+	gameController.gameFinish(gameFinish);
 	const backToStart = new NodeCreator(document.createElement('button'),{classList:['game-back'], text:'Back To Start Page'}, this.getElement());
 	backToStart.setOnclick(() => {
 new NodeEraser([this]).erase();
