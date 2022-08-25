@@ -1,6 +1,11 @@
 .game-finish{
 	
 }
+.game-finish-text{
+	font-size: 5rem;
+	letter-spacing: 0.03rem;
+	color: #fff;
+}
 .game-finish-score-title{
 	font-size: 3rem;
 	color: #fff;

@@ -4,9 +4,11 @@ export default class GameController{
 	private clickedCards: Array<HTMLElement> = [];
  private  totalCards = 0;
 	private score: Score;
+	private gameFinished: GameFinish;
 
-	constructor(private cardInner: HTMLElement, score: Score){
+	constructor(private cardInner: HTMLElement, score: Score, gameFinish: GameFinish){
    this.score = score;
+			this.gameFinished = gameFinish;
 			this.setClickToCards(this.cardInner);
 	}
 
@@ -101,10 +103,13 @@ isSameOpenedTwoCards(): boolean{
 	  return !!hasIds && isTheSameIdCards;
 }
 
-gameFinish(gameFinish: GameFinish):void{
+private gameFinish(gameFinish: GameFinish): void{
+	setTimeout(() => {
 gameFinish.setScore(this.score.getScore());
+gameFinish.setTextFinish(gameFinish.getSuccess());
 gameFinish.render();
-		console.log('FF7')
+	}, 600);
+
 }
 
 	sameTwoCardsOpened(): void {
@@ -112,8 +117,8 @@ gameFinish.render();
   this.clearClickedCards();
   this.score.increaseScore();
 		if(this.isGameFinished()){
-			this.gameFinish.bind(this);
-	
+			 this.gameFinish(this.gameFinished);
+
 		}
 }
 
