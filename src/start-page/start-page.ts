@@ -3,6 +3,7 @@ import {NodeCreator, INodeParametrs} from '../helpers/node-creator';
 import NodeEraser from '../helpers/node-eraser';
 import Game from '../game/game';
 import Settings from '../settings/settings';
+import InfoGame from '../info-game/info';
 
 export default class StartPage extends NodeCreator {
   constructor( element: HTMLElement, nodeParams: INodeParametrs, parent?: HTMLElement){
@@ -21,6 +22,12 @@ export default class StartPage extends NodeCreator {
 startSettings.setOnclick(():void =>{
   new NodeEraser([this]).erase();
   new Settings(document.createElement('div'),{classList: ['settings-page']}, {difficulty: 'medium'}, this.getParent()).render();
+});
+
+const info = new NodeCreator(document.createElement('button'),{classList: ['start-page-info'], text: 'Info'}, startPageInner.getElement());
+info.setOnclick(()=>{
+  new NodeEraser([this]).erase();
+  new InfoGame(document.createElement('div'), {classList: ['info-page']}, this.getParent()).render();
 });
 
 startButton.setOnclick(():void =>{
