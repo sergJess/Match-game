@@ -26,7 +26,7 @@ render(): void {
 	const timerStart = new Timer({classList: ['timer', 'game-timer'], timerValue: 3, shouldDelete: true}, () => {
 		gameController.hideCards(gameField.getElement())
 	const gameTimer = new Timer({classList:['timer', 'game-timer'], timerValue: 4, shouldDelete: false}, ()=>{
-gameController.gameLost(gameFinish);
+gameController.gameFinishLost(gameFinish);
 	}, this.getElement());
 	gameTimer.start();
 	}, this.getElement());

@@ -92,7 +92,12 @@ setCardsInactive(): void{
 		item.setAttribute('data-is-clickable', 'false');
 	});
 }
-
+private setWholeCardsInactive(): void{
+	this.cardInner.querySelectorAll('.card').
+	forEach((item)=>{
+		item.setAttribute('data-is-clickable', 'false');
+	});
+}
 isSameOpenedTwoCards(): boolean{
 	  const firstCard = this.clickedCards[0];
 	  const secondCard =	this.clickedCards[1];
@@ -103,7 +108,7 @@ isSameOpenedTwoCards(): boolean{
 	  return !!hasIds && isTheSameIdCards;
 }
 
-private gameFinish(gameFinish: GameFinish): void{
+private gameFinishWin(gameFinish: GameFinish): void{
 	setTimeout(() => {
 gameFinish.setScore(this.score.getScore());
 gameFinish.setTextFinish(true);
@@ -112,10 +117,11 @@ gameFinish.render();
 
 }
 
-gameLost(gameFinish:	GameFinish): void{
+gameFinishLost(gameFinish:	GameFinish): void{
 gameFinish.setScore(this.score.getScore());
 gameFinish.setTextFinish(false);
 gameFinish.render();
+this.setWholeCardsInactive();
 }
 
 	sameTwoCardsOpened(): void {
@@ -123,7 +129,7 @@ gameFinish.render();
   this.clearClickedCards();
   this.score.increaseScore();
 		if(this.isGameFinished()){
-			 this.gameFinish(this.gameFinished);
+			 this.gameFinishWin(this.gameFinished);
 
 		}
 }
