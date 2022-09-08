@@ -8,14 +8,13 @@ shouldDelete:	boolean;
 type TimerClassList = Array<string>;
 export class Timer{
 	private timerElement = new NodeCreator(document.createElement('div'), {classList: this.parameters.classList});
-	private callback: Function;
 	private timerId = setTimeout(() =>{}, 0);
 	private additionCallback: Function = ()=>{};
 
-	constructor(private parent: HTMLElement, private parameters:ITimerParams	, private action: Function) {
-	this.callback =	action;
-	
+	constructor(private parameters:ITimerParams	, private action: Function, private parent?: HTMLElement) {
+		if(this.parent){
 	this.parent.append(this.timerElement.getElement());
+		}
 }
 
 setTimer(value:	number): void{
@@ -46,7 +45,7 @@ let timerCount = this.parameters.timerValue - 1;
 		  this.timerId = setTimeout(rec, 1000);
 	   }
 	 else {
-			 this.callback();
+			 this.action();
 			 this.setAction(this.additionCallback);
 	  	clearTimeout(this.timerId);
 				if(this.parameters.shouldDelete){

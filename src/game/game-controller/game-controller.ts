@@ -106,10 +106,16 @@ isSameOpenedTwoCards(): boolean{
 private gameFinish(gameFinish: GameFinish): void{
 	setTimeout(() => {
 gameFinish.setScore(this.score.getScore());
-gameFinish.setTextFinish(gameFinish.getSuccess());
+gameFinish.setTextFinish(true);
 gameFinish.render();
 	}, 600);
 
+}
+
+gameLost(gameFinish:	GameFinish): void{
+gameFinish.setScore(this.score.getScore());
+gameFinish.setTextFinish(false);
+gameFinish.render();
 }
 
 	sameTwoCardsOpened(): void {

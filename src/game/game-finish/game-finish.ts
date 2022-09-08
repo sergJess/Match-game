@@ -17,8 +17,8 @@ getLose(): string{
 setScore(value: number): void{
 	this.score = value;
 }
-setTextFinish(value: string): void{
-this.textFinish = value;
+setTextFinish(isVictory: boolean): void{
+	isVictory? this.textFinish = this.success:this.textFinish = this.lose;
 }
 
 render(): void{
