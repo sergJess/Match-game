@@ -22,7 +22,7 @@
 	background-color: #16b1a4;
 }
 
-.start-settings-button{
+.start-settings-button, .start-page-info{
 	display: block;
 	padding: 0.8rem 2.2rem;
 	font-size: 2.8rem;
@@ -32,6 +32,6 @@
 	cursor: pointer;
 	transition: background-color 0.5s ease-in-out;
 }
-.start-settings-button:hover{
+.start-settings-button:hover, .start-page-info:hover{
 	background-color: #c99a24;
 }
