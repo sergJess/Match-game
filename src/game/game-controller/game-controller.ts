@@ -113,6 +113,7 @@ private gameFinishWin(gameFinish: GameFinish): void{
 gameFinish.setScore(this.score.getScore());
 gameFinish.setTextFinish(true);
 gameFinish.render();
+gameFinish.open();
 	}, 600);
 
 }
@@ -121,6 +122,7 @@ gameFinishLost(gameFinish:	GameFinish): void{
 gameFinish.setScore(this.score.getScore());
 gameFinish.setTextFinish(false);
 gameFinish.render();
+gameFinish.open();
 this.setWholeCardsInactive();
 }
 

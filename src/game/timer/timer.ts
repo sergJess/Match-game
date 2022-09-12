@@ -1,5 +1,5 @@
 import './timer.css';
-import {NodeCreator, INodeParametrs} from '../../helpers/node-creator';
+import {NodeCreator} from '../../helpers/node-creator';
 interface ITimerParams  {
 classList : Array<string>;
 timerValue: number;

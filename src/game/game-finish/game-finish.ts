@@ -20,7 +20,12 @@ setScore(value: number): void{
 setTextFinish(isVictory: boolean): void{
 	isVictory? this.textFinish = this.success:this.textFinish = this.lose;
 }
-
+open(): void{
+this.getElement().classList.add('game-finish-open');
+}
+close(): void{
+	this.getElement().classList.remove('game-finish-open');
+}
 render(): void{
 	const finishText = new NodeCreator(document.createElement('p'), {classList:['game-finish-text'], text: this.textFinish}, this.getElement());
 const totalScore = new NodeCreator(document.createElement('h2'), {classList:['game-finish-score-title'], text:'Your total score is:'}, this.getElement());

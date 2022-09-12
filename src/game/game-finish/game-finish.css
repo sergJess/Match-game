@@ -1,5 +1,18 @@
 .game-finish{
-	
+    position: fixed;
+    top: -200vh;
+    left: 0;
+    min-height: 320px;
+    width: 100%;
+    z-index: 100;
+				border-radius: 8px;
+				padding: 0.8rem 2rem;
+				text-align: center;
+    background-color: rgba(11,22,33, 0.7);
+
+}
+.game-finish-open{
+	 top: 20vh;
 }
 .game-finish-text{
 	font-size: 5rem;
