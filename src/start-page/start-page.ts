@@ -19,18 +19,18 @@ export default class StartPage extends NodeCreator {
   const startSettings =  new NodeCreator(document.createElement('button'),{classList: ['start-settings-button'],
   text: 'Settings'
 }, startPageInner.getElement());
-startSettings.setOnclick(():void =>{
+startSettings.setOnclick(():void => {
   new NodeEraser([this]).erase();
   new Settings(document.createElement('div'),{classList: ['settings-page']}, {difficulty: 'medium'}, this.getParent()).render();
 });
 
 const info = new NodeCreator(document.createElement('button'),{classList: ['start-page-info'], text: 'Info'}, startPageInner.getElement());
-info.setOnclick(()=>{
+info.setOnclick(() => {
   new NodeEraser([this]).erase();
   new InfoGame(document.createElement('div'), {classList: ['info-page']}, this.getParent()).render();
 });
 
-startButton.setOnclick(():void =>{
+startButton.setOnclick(():void => {
   new NodeEraser([this]).erase();
   new Game(document.createElement('div'),{classList: ['game-page']}, this.getParent()).render();
 });

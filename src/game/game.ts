@@ -23,9 +23,9 @@ render(): void {
 	gameField.render(frontCardImages);
 		const gameFinish = new GameFinish(document.createElement('div'), {classList:['game-finish']},game.getElement());
 	const gameController = new GameController(gameField.getElement(), score, gameFinish);
-	const timerStart = new Timer({classList: ['timer', 'game-timer'], timerValue: 3, shouldDelete: true}, () => {
+	const timerStart = new Timer({classList: ['timer', 'game-timer'], timerValue: 1, shouldDelete: true}, () => {
 		gameController.hideCards(gameField.getElement())
-	const gameTimer = new Timer({classList:['timer', 'game-timer'], timerValue: 4, shouldDelete: false}, ()=>{
+	const gameTimer = new Timer({classList:['timer', 'game-timer'], timerValue: 1, shouldDelete: false}, () => {
 gameController.gameFinishLost(gameFinish);
 	}, this.getElement());
 	gameTimer.start();

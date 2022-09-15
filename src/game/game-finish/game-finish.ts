@@ -1,5 +1,6 @@
 import './game-finish.css';
 import {NodeCreator, INodeParametrs} from '../../helpers/node-creator';
+import Eraser from '../../helpers/node-eraser';
 export default class GameFinish extends NodeCreator {
 private score = 0;
 private textFinish = '';
@@ -30,6 +31,9 @@ render(): void{
 	const finishText = new NodeCreator(document.createElement('p'), {classList:['game-finish-text'], text: this.textFinish}, this.getElement());
 const totalScore = new NodeCreator(document.createElement('h2'), {classList:['game-finish-score-title'], text:'Your total score is:'}, this.getElement());
 const scoreCount = new NodeCreator(document.createElement('span'), {classList:['game-finish-score-value'], text: `${this.score}`}, totalScore.getElement());
-
+const buttonPlayAgain = new NodeCreator(document.createElement('button'), {classList:['game-finish-play-again'], text: 'Play Again'}, this.getElement());
+buttonPlayAgain.setOnclick(() => {
+	
+});
 }
 }
