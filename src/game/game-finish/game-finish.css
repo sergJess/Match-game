@@ -45,3 +45,13 @@
 .game-finish-play-again:hover .game-finish-play-again::after{
 width: 100%;
 }
+
+.game-finish-start-page{
+	border: 3px solid #6a0287;
+	border-radius: 12px;
+	font-size: 2.8rem;
+	color: #fff;
+ padding: 0.8rem 1.2rem;
+	background-color: rgba(108, 7, 96, 0.8);
+	cursor: pointer;
+}
