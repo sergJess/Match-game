@@ -13,11 +13,13 @@ if(this.nodeToRemove){
 	});
 }
 
-if(this.nodeToClear){
+}
+clear():	void{
+	if(this.nodeToClear){
 	this.nodeToClear.map((item:NodeCreator)=>{
 		item.removeElementContent();
 	});
 }
-}
 
+}
 }

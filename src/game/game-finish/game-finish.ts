@@ -1,6 +1,7 @@
 import './game-finish.css';
 import {NodeCreator, INodeParametrs} from '../../helpers/node-creator';
-import Eraser from '../../helpers/node-eraser';
+import StartPage from '../../start-page/start-page';
+import {content, contentNode} from '../../index';
 export default class GameFinish extends NodeCreator {
 private score = 0;
 private textFinish = '';
@@ -34,6 +35,14 @@ const scoreCount = new NodeCreator(document.createElement('span'), {classList:['
 const buttonPlayAgain = new NodeCreator(document.createElement('button'), {classList:['game-finish-play-again'], text: 'Play Again'}, this.getElement());
 buttonPlayAgain.setOnclick(() => {
 	
+
 });
+const backToStartPage = new NodeCreator(document.createElement('button'), {classList:['game-finish-start-page'], text: 'back To Start Page'}, this.getElement());
+backToStartPage.setOnclick(() => {
+this.removeElement();
+contentNode.removeElementContent();
+new StartPage(document.createElement('div'),{classList: ['start-page']}, content).render();
+});
+
 }
 }

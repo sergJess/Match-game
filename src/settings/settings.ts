@@ -1,11 +1,9 @@
 import './settings.css';
 import {NodeCreator, INodeParametrs} from '../helpers/node-creator';
-import NodeEraser from '../helpers/node-eraser';
 import Difficulty from './difficulty/difficulty';
 import StartPage from '../start-page/start-page';
 import {content} from '../index';
 import {appSettings} from './settings-app/settings-app';
-type voidFunc = ()=> void;
 interface settingsParams {
 difficulty: string; // easy - medium - hard
 }
@@ -40,7 +38,7 @@ const buttonBack = new NodeCreator(document.createElement('div'), {
 	text: 'Back'
 }, settingsInner.getElement());
 buttonBack.setOnclick(():void => {
-new NodeEraser([this]).erase();
+this.removeElement();
 new StartPage(document.createElement('div'), {classList: ['start-page']}, content).render();
 });
 

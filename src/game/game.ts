@@ -2,7 +2,6 @@ import './game.css';
 import {NodeCreator, INodeParametrs} from '../helpers/node-creator';
 import {GameField, frontCardImages} from './game-field/game-field';
 import Score from './score/score';
-import Eraser from '../helpers/node-eraser';
 import {content} from '../index';
 import StartPage from '../start-page/start-page';
 import GameController from './game-controller/game-controller';
@@ -34,7 +33,7 @@ gameController.gameFinishLost(gameFinish);
 
 	const backToStart = new NodeCreator(document.createElement('button'),{classList:['game-back'], text:'Back To Start Page'}, this.getElement());
 	backToStart.setOnclick(() => {
-new Eraser([this]).erase();
+this.removeElement();
 new StartPage(document.createElement('div'),{classList: ['start-page']}, content).render();
 	});
 }
