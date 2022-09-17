@@ -5,7 +5,6 @@ classList : Array<string>;
 timerValue: number;
 shouldDelete:	boolean;
 }
-type TimerClassList = Array<string>;
 export class Timer{
 	private timerElement = new NodeCreator(document.createElement('div'), {classList: this.parameters.classList});
 	private timerId = setTimeout(() =>{}, 0);

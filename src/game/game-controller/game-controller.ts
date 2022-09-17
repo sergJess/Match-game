@@ -5,6 +5,7 @@ export default class GameController{
  private  totalCards = 0;
 	private score: Score;
 	private gameFinished: GameFinish;
+	private isWin = false;
 
 	constructor(private cardInner: HTMLElement, score: Score, gameFinish: GameFinish){
    this.score = score;
@@ -109,6 +110,7 @@ isSameOpenedTwoCards(): boolean{
 }
 
 private gameFinishWin(gameFinish: GameFinish): void{
+	this.isWin = true;
 	setTimeout(() => {
 gameFinish.setScore(this.score.getScore());
 gameFinish.setTextFinish(true);
@@ -119,11 +121,14 @@ gameFinish.open();
 }
 
 gameFinishLost(gameFinish:	GameFinish): void{
+	if(!this.isWin){
 gameFinish.setScore(this.score.getScore());
 gameFinish.setTextFinish(false);
 gameFinish.render();
 gameFinish.open();
 this.setWholeCardsInactive();
+	}
+
 }
 
 	sameTwoCardsOpened(): void {
